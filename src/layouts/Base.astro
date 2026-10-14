@@ -1,0 +1,70 @@
+---
+import profile from '../data/profile.json';
+import site from '../data/site.json';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  home?: boolean;
+}
+
+const { title, description = site.description, home = false } = Astro.props;
+const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} · ${profile.role}`;
+const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).slice(0, 2).join('').toUpperCase();
+const links = [
+  { label: 'LinkedIn', href: profile.linkedin },
+  { label: 'GitHub', href: profile.github },
+  { label: 'Scholar', href: profile.scholar },
+].filter(link => link.href);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#14263d" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label={`${profile.name}, home`}>
+          <span class="brand-mark" aria-hidden="true">{initials}</span>
+          <span>{profile.name}</span>
+        </a>
+        <nav class="top-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/about/">About</a>
+          <a href="/projects/">Projects</a>
+          <a href="/research/">Research</a>
+          <a href="/recognition/">Recognition</a>
+          {profile.cv && <a href={profile.cv} target="_blank" rel="noopener noreferrer">CV</a>}
+        </nav>
+      </header>
+
+      <div class:list={['page-grid', { 'home-grid': home }]}>
+        {!home && <aside class="sidebar" aria-label="Profile">
+          <div class="portrait">
+            {profile.portrait ? <img src={profile.portrait} alt={`${profile.name} portrait`} /> : <span aria-hidden="true">{initials}</span>}
+          </div>
+          <p class="eyebrow">Portfolio</p>
+          <h2>{profile.name}</h2>
+          <p class="sidebar-role">{profile.role}</p>
+          {profile.location && <p class="sidebar-location"><span aria-hidden="true">⌖</span> {profile.location}</p>}
+          <div class="sidebar-rule"></div>
+          {profile.email && <a class="contact-link" href={`mailto:${profile.email}`}>Get in touch <span aria-hidden="true">↗</span></a>}
+          {links.length > 0 && <div class="social-links">{links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</div>}
+        </aside>}
+
+        <main id="main" class="main-content"><slot /></main>
+      </div>
+
+      <footer class="footer"><span>© {new Date().getFullYear()} {profile.name}</span><span>Built with care and curiosity.</span></footer>
+    </div>
+  </body>
+</html>

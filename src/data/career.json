@@ -1,0 +1,34 @@
+{
+  "experience": [
+    {
+      "role": "Example: Your current role",
+      "organization": "Organization name",
+      "period": "2024 – Present",
+      "description": "Briefly describe what you do and one meaningful result."
+    },
+    {
+      "role": "Example: Previous role or internship",
+      "organization": "Organization name",
+      "period": "2022 – 2024",
+      "description": "Add your responsibilities, collaborators, or the impact of your work."
+    }
+  ],
+  "education": [
+    {
+      "qualification": "Example: Degree or qualification",
+      "institution": "University or school name",
+      "period": "2019 – 2023",
+      "description": "Your field of study, thesis, or a notable focus."
+    }
+  ],
+  "skills": [
+    {
+      "category": "Research & methods",
+      "items": "Research design, analysis, writing"
+    },
+    {
+      "category": "Tools & technology",
+      "items": "List the tools you use most often"
+    }
+  ]
+}

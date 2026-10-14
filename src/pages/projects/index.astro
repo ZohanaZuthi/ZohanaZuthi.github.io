@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import EntryCard from '../../components/EntryCard.astro';
+import { published } from '../../lib/content';
+const entries = await published('projects');
+---
+
+<Base title="Projects" description="Selected projects and case studies.">
+  <section class="page-intro"><p class="eyebrow">Selected work / {entries.length} entries</p><h1>Projects<span class="accent-dot">.</span></h1><p>A closer look at the ideas, process, and outcomes behind the work.</p></section>
+  {entries.length ? <div class="card-grid listing-grid">{entries.map(entry => <EntryCard entry={entry} />)}</div> : <p class="empty-message">Projects will appear here when published.</p>}
+</Base>

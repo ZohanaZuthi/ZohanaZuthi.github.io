@@ -1,0 +1,167 @@
+media:
+  - name: images
+    label: Images
+    input: public/uploads/images
+    output: /uploads/images
+    extensions: [jpg, jpeg, png, webp, svg]
+    rename: safe
+  - name: documents
+    label: Documents
+    input: public/uploads/documents
+    output: /uploads/documents
+    extensions: [pdf]
+    rename: safe
+
+content:
+  - name: profile
+    label: Profile
+    type: file
+    path: src/data/profile.json
+    format: json
+    fields:
+      - { name: name, label: Full name, type: string, required: true }
+      - { name: role, label: Professional title, type: string, required: true }
+      - { name: location, label: Location, type: string }
+      - { name: intro, label: Short introduction, type: text, required: true }
+      - { name: about, label: About me, type: text, required: true }
+      - name: email
+        label: Public email
+        type: string
+      - name: portrait
+        label: Portrait photo
+        type: image
+        options: { media: images }
+      - name: cv
+        label: CV (PDF)
+        type: file
+        options: { media: documents, extensions: [pdf] }
+      - { name: linkedin, label: LinkedIn URL, type: string }
+      - { name: github, label: GitHub URL, type: string }
+      - { name: scholar, label: Google Scholar URL, type: string }
+
+  - name: site
+    label: Site settings
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: tagline, label: Homepage tagline, type: string, required: true }
+      - { name: description, label: Search description, type: text, required: true }
+
+  - name: career
+    label: Experience, education & skills
+    type: file
+    path: src/data/career.json
+    format: json
+    fields:
+      - name: experience
+        label: Experience
+        type: object
+        list: true
+        fields:
+          - { name: role, label: Role, type: string, required: true }
+          - { name: organization, label: Organization, type: string }
+          - { name: period, label: Dates, type: string }
+          - { name: description, label: Description, type: text }
+      - name: education
+        label: Education
+        type: object
+        list: true
+        fields:
+          - { name: qualification, label: Qualification, type: string, required: true }
+          - { name: institution, label: Institution, type: string }
+          - { name: period, label: Dates, type: string }
+          - { name: description, label: Description, type: text }
+      - name: skills
+        label: Skills
+        type: object
+        list: true
+        fields:
+          - { name: category, label: Category, type: string, required: true }
+          - { name: items, label: Skills (comma-separated), type: text }
+
+  - name: projects
+    label: Projects
+    type: collection
+    path: src/content/projects
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: summary, label: Short summary, type: text, required: true }
+      - { name: date, label: Date, type: date, required: true }
+      - { name: category, label: Category, type: string }
+      - name: image
+        label: Cover image
+        type: image
+        options: { media: images }
+      - { name: link, label: Live project URL, type: string }
+      - { name: source, label: Source code URL, type: string }
+      - { name: featured, label: Show on homepage, type: boolean }
+      - { name: published, label: Published, type: boolean }
+      - { name: body, label: Full story, type: rich-text }
+
+  - name: research
+    label: Research & publications
+    type: collection
+    path: src/content/research
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: summary, label: Short summary, type: text, required: true }
+      - { name: date, label: Date, type: date, required: true }
+      - { name: venue, label: Journal or conference, type: string }
+      - name: image
+        label: Cover image
+        type: image
+        options: { media: images }
+      - { name: link, label: Publication URL, type: string }
+      - name: pdf
+        label: Paper PDF
+        type: file
+        options: { media: documents, extensions: [pdf] }
+      - { name: published, label: Published, type: boolean }
+      - { name: body, label: Abstract or details, type: rich-text }
+
+  - name: certificates
+    label: Certificates
+    type: collection
+    path: src/content/certificates
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: summary, label: Short summary, type: text, required: true }
+      - { name: date, label: Issue date, type: date, required: true }
+      - { name: issuer, label: Issuer, type: string }
+      - name: image
+        label: Certificate image
+        type: image
+        options: { media: images }
+      - { name: link, label: Credential URL, type: string }
+      - name: pdf
+        label: Certificate PDF
+        type: file
+        options: { media: documents, extensions: [pdf] }
+      - { name: published, label: Published, type: boolean }
+      - { name: body, label: Details, type: rich-text }
+
+  - name: achievements
+    label: Achievements & awards
+    type: collection
+    path: src/content/achievements
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: summary, label: Short summary, type: text, required: true }
+      - { name: date, label: Date, type: date, required: true }
+      - { name: organization, label: Organization, type: string }
+      - name: image
+        label: Image
+        type: image
+        options: { media: images }
+      - { name: link, label: More information URL, type: string }
+      - { name: published, label: Published, type: boolean }
+      - { name: body, label: Details, type: rich-text }

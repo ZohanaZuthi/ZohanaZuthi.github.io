@@ -1,0 +1,17 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import { dateLabel } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('achievements', ({ data }) => data.published);
+  return entries.map(entry => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base title={entry.data.title} description={entry.data.summary}>
+  <article class="detail-page"><a class="back-link" href="/recognition/">← All recognition</a><p class="eyebrow">{entry.data.organization || 'Achievement'} / {dateLabel(entry.data.date)}</p><h1>{entry.data.title}</h1><p class="detail-summary">{entry.data.summary}</p>{entry.data.image && <img class="detail-image" src={entry.data.image} alt="" />}<div class="prose"><Content /></div>{entry.data.link && <div class="detail-links"><a class="button button-primary" href={entry.data.link} target="_blank" rel="noopener noreferrer">More information ↗</a></div>}</article>
+</Base>
