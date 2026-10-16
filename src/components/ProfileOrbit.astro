@@ -1,14 +1,10 @@
 ---
-interface Props { portrait: string; name: string; }
-const { portrait, name } = Astro.props;
-const initials = name.split(' ').filter(Boolean).map(part => part[0]).slice(0, 2).join('').toUpperCase();
+import ProfilePortrait from './ProfilePortrait.astro';
 ---
 
 <div class="profile-orbit" data-profile-orbit>
   <canvas class="profile-orbit-canvas" aria-hidden="true"></canvas>
-  <div class="profile-orbit-photo">
-    {portrait ? <img src={portrait} alt={`${name} portrait`} /> : <span aria-label={`${name} portrait placeholder`}>{initials}</span>}
-  </div>
+  <ProfilePortrait hero />
   <span class="orbit-spark orbit-spark-one" aria-hidden="true">✦</span>
   <span class="orbit-spark orbit-spark-two" aria-hidden="true">✳</span>
 </div>

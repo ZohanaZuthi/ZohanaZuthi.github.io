@@ -1,6 +1,7 @@
 ---
 import profile from '../data/profile.json';
 import site from '../data/site.json';
+import ProfilePortrait from '../components/ProfilePortrait.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -49,9 +50,7 @@ const links = [
 
       <div class:list={['page-grid', { 'home-grid': home }]}>
         {!home && <aside class="sidebar" aria-label="Profile">
-          <div class="portrait">
-            {profile.portrait ? <img src={profile.portrait} alt={`${profile.name} portrait`} /> : <span aria-hidden="true">{initials}</span>}
-          </div>
+          <ProfilePortrait />
           <p class="eyebrow">Portfolio</p>
           <h2>{profile.name}</h2>
           <p class="sidebar-role">{profile.role}</p>

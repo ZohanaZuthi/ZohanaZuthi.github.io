@@ -1,0 +1,15 @@
+---
+import profile from '../data/profile.json';
+
+interface Props { hero?: boolean; }
+const { hero = false } = Astro.props;
+const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).slice(0, 2).join('').toUpperCase();
+---
+
+<div class={hero ? 'profile-orbit-photo' : 'portrait'}>
+  {profile.portrait ? (
+    <img src={profile.portrait} alt={`${profile.name} portrait`} width="480" height="480" decoding="async" />
+  ) : (
+    <span aria-label={`${profile.name} portrait placeholder`}>{initials}</span>
+  )}
+</div>
