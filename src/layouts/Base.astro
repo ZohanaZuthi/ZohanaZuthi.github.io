@@ -1,5 +1,6 @@
 ---
 import profile from '../data/profile.json';
+import { gmailComposeUrl } from '../lib/contact';
 import site from '../data/site.json';
 import ProfilePortrait from '../components/ProfilePortrait.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
@@ -67,7 +68,7 @@ const links = [
           <p class="sidebar-role">{profile.role}</p>
           {profile.location && <p class="sidebar-location"><span aria-hidden="true">⌖</span> {profile.location}</p>}
           <div class="sidebar-rule"></div>
-          {profile.email && <a class="contact-link" href={`mailto:${profile.email}`}>Get in touch <span aria-hidden="true">↗</span></a>}
+          {profile.email && <a class="contact-link" href={gmailComposeUrl(profile.email)} target="_blank" rel="noopener noreferrer">Get in touch <span aria-hidden="true">↗</span></a>}
           {links.length > 0 && <div class="social-links">{links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</div>}
         </aside>}
 

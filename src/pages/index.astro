@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import EntryCard from '../components/EntryCard.astro';
 import ProfileOrbit from '../components/ProfileOrbit.astro';
 import profile from '../data/profile.json';
+import { gmailComposeUrl } from '../lib/contact';
 import site from '../data/site.json';
 import { published, dateLabel } from '../lib/content';
 
@@ -49,5 +50,5 @@ const selected = (featured.length ? featured : projects).slice(0, 3);
     {achievements.length ? <div class="milestone-grid">{achievements.slice(0, 2).map(entry => <a class="milestone" href={`/recognition/achievements/${entry.id}/`}><span class="milestone-symbol" aria-hidden="true">✦</span><div><span class="entry-meta">{dateLabel(entry.data.date)}</span><h3>{entry.data.title}</h3><p>{entry.data.summary}</p></div></a>)}</div> : <p class="empty-message">Achievements will appear here when published.</p>}
   </section>
 
-  <section class="closing-panel"><p class="eyebrow">Let's connect</p><h2>Have a question or an idea?</h2><p>I'm always interested in thoughtful conversations and meaningful work.</p>{profile.email ? <a class="button button-light" href={`mailto:${profile.email}`}>Send an email <span aria-hidden="true">↗</span></a> : <span class="closing-note">Add your email in the Profile editor to enable contact.</span>}</section>
+  <section class="closing-panel"><p class="eyebrow">Let's connect</p><h2>Have a question or an idea?</h2><p>I'm always interested in thoughtful conversations and meaningful work.</p>{profile.email ? <a class="button button-light" href={gmailComposeUrl(profile.email)} target="_blank" rel="noopener noreferrer">Send an email <span aria-hidden="true">↗</span></a> : <span class="closing-note">Add your email in the Profile editor to enable contact.</span>}</section>
 </Base>
