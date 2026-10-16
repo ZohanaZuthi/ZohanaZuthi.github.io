@@ -1,5 +1,6 @@
 /* Scale the type together while preserving the existing hierarchy. */
 :root {
+  --navbar-height: 100px;
   --page: #f8fafc;
   --surface: #ffffff;
   --soft: #eaf0f0;
@@ -57,10 +58,10 @@ img { max-width: 100%; display: block; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 3px; }
 
-.site-shell { max-width: 1720px; margin: auto; padding: 0 32px; }
+.site-shell { max-width: 1720px; margin: auto; padding: var(--navbar-height) 32px 0; }
 .skip-link { position: absolute; top: -100px; left: 16px; background: var(--surface); padding: 12px; z-index: 10; }
 .skip-link:focus { top: 12px; }
-.topbar { position: sticky; top: 0; z-index: 5; background: var(--page); min-height: 100px; display: flex; align-items: center; gap: 32px; border-bottom: 1px solid var(--border); }
+.topbar { position: fixed; top: 0; left: 32px; right: 32px; max-width: 1656px; margin-inline: auto; z-index: 5; background: var(--page); min-height: var(--navbar-height); display: flex; align-items: center; gap: 32px; border-bottom: 1px solid var(--border); }
 .brand { display: flex; gap: 12px; align-items: center; font-weight: 750; font-size: 1.125rem; letter-spacing: -.04em; white-space: nowrap; }
 .brand-mark { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; background: #14263d; color: white; font-size: 0.75rem; letter-spacing: -.05em; }
 .top-nav { display: flex; gap: 32px; margin: 0 auto; }
@@ -233,7 +234,8 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 .prose, .entry-card-body, .certificate-body, .timeline-item { overflow-wrap: anywhere; }
 
 @media (max-width: 1050px) {
-  .site-shell { padding: 0 28px; }
+  .site-shell { padding: var(--navbar-height) 28px 0; }
+  .topbar { left: 28px; right: 28px; }
   .page-grid { grid-template-columns: 220px minmax(0, 1fr); gap: 28px; }
   .top-nav { gap: 19px; }
   .hero { min-height: 570px; }
@@ -242,9 +244,10 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 }
 
 @media (max-width: 760px) {
+  :root { --navbar-height: 132px; }
   html { scroll-padding-top: 160px; }
-  .site-shell { padding: 0 20px; }
-  .topbar { min-height: 75px; flex-wrap: wrap; justify-content: space-between; gap: 0; padding: 15px 0; }
+  .site-shell { padding: var(--navbar-height) 20px 0; }
+  .topbar { left: 20px; right: 20px; min-height: var(--navbar-height); flex-wrap: wrap; justify-content: space-between; gap: 0; padding: 15px 0; }
   .brand { font-size: 1rem; }
   .top-nav { order: 2; width: 100%; overflow-x: auto; margin: 17px 0 0; padding-bottom: 2px; gap: 21px; }
   .top-nav a { white-space: nowrap; }
