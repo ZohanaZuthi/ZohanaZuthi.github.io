@@ -5,6 +5,6 @@ date: 2026-10-16
 category: vvhubu
 link: https://ain-bondhu-pi.vercel.app/
 source: https://github.com/thenexgenix/AinBondu-Frontend
-featured: false
-published: false
+featured: true
+published: true
 ---
