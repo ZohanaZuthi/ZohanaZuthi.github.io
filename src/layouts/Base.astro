@@ -2,6 +2,7 @@
 import profile from '../data/profile.json';
 import site from '../data/site.json';
 import ProfilePortrait from '../components/ProfilePortrait.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -26,7 +27,16 @@ const links = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#14263d" />
+    <meta name="theme-color" content="#f8fafc" />
+    <script is:inline>
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      try {
+        const saved = localStorage.getItem('portfolio-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch {}
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#101827' : '#f8fafc');
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{pageTitle}</title>
   </head>
@@ -46,6 +56,7 @@ const links = [
           <a href="/recognition/">Recognition</a>
           {profile.cv && <a href={profile.cv} target="_blank" rel="noopener noreferrer">CV</a>}
         </nav>
+        <ThemeToggle />
       </header>
 
       <div class:list={['page-grid', { 'home-grid': home }]}>
