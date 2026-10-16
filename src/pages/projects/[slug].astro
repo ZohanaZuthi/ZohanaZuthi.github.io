@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { dateLabel } from '../../lib/content';
+import { projectImage } from '../../lib/project-image.js';
 
 export async function getStaticPaths() {
   const entries = await getCollection('projects', ({ data }) => data.published);
@@ -10,8 +11,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const image = projectImage(entry.data);
 ---
 
 <Base title={entry.data.title} description={entry.data.summary}>
-  <article class="detail-page"><a class="back-link" href="/projects/">← All projects</a><p class="eyebrow">{entry.data.category || 'Project'} / {dateLabel(entry.data.date)}</p><h1>{entry.data.title}</h1><p class="detail-summary">{entry.data.summary}</p>{entry.data.image && <img class="detail-image" src={entry.data.image} alt="" />}<div class="prose"><Content /></div><div class="detail-links">{entry.data.link && <a class="button button-primary" href={entry.data.link} target="_blank" rel="noopener noreferrer">Visit project ↗</a>}{entry.data.source && <a class="button button-outline" href={entry.data.source} target="_blank" rel="noopener noreferrer">View source ↗</a>}</div></article>
+  <article class="detail-page"><a class="back-link" href="/projects/">← All projects</a><p class="eyebrow">{entry.data.category || 'Project'} / {dateLabel(entry.data.date)}</p><h1>{entry.data.title}</h1><p class="detail-summary">{entry.data.summary}</p><img class="detail-image" src={image} alt="" /><div class="prose"><Content /></div><div class="detail-links">{entry.data.link && <a class="button button-primary" href={entry.data.link} target="_blank" rel="noopener noreferrer">Visit project ↗</a>}{entry.data.source && <a class="button button-outline" href={entry.data.source} target="_blank" rel="noopener noreferrer">View source ↗</a>}</div></article>
 </Base>

@@ -34,6 +34,15 @@ Example entries are clearly marked. Replace or delete them before publishing.
 
 The homepage shows up to three featured projects, the three newest research entries, and two achievements. The Projects, Research, and Recognition pages show every published entry. Set `featured: true` on a project to choose it for the homepage. The portrait's small Three.js effect runs only when motion is allowed; the profile image remains visible without it.
 
+Project covers use your uploaded image first. If the cover is empty and a Live project URL is provided, GitHub Actions captures a desktop preview of that public page during deployment. If there is no URL or the capture fails, the default project illustration appears. Pages behind sign-in need an uploaded screenshot. Previews refresh on each deployment and require no API key or extra account.
+
+To generate project previews locally (optional), have Google Chrome installed and run:
+
+```bash
+npm run screenshots
+npm run build
+```
+
 ## How publishing works
 
 Pages CMS reads `.pages.yml` and saves edits to this repository. Entries with `published: false` are excluded from the public pages. A push to `main` runs `.github/workflows/deploy.yml`, which checks and builds the site before publishing it to GitHub Pages. The editor and GitHub setup are intentionally left for a separate step.

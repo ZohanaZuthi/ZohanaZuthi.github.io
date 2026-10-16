@@ -94,6 +94,7 @@ content:
       - name: image
         label: Cover image
         type: image
+        description: Optional. Upload a cover, or leave empty to preview the live project URL.
         options: { media: images }
       - { name: link, label: Live project URL, type: string }
       - { name: source, label: Source code URL, type: string }
