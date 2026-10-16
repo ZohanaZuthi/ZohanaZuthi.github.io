@@ -38,7 +38,7 @@ content:
       - { name: linkedin, label: LinkedIn URL, type: string }
       - { name: github, label: GitHub URL, type: string }
       - { name: scholar, label: Google Scholar URL, type: string }
-      - { name: orcid, label: ORCID URL, type: string }
+      - { name: orcid, label: ORCID URL, type: string, description: "Optional. Paste your full https://orcid.org/ profile URL. Leave empty to hide it on every page." }
       - { name: researchgate, label: ResearchGate URL, type: string }
       - { name: arxiv, label: arXiv URL, type: string }
       - { name: pubmed, label: PubMed URL, type: string }
