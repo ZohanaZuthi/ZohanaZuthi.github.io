@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { dateLabel } from '../lib/content';
+import { dateLabel, defaultResearchImage } from '../lib/content';
 
 interface Props {
   entry: CollectionEntry<'projects' | 'research'>;
@@ -10,11 +10,12 @@ const { entry } = Astro.props;
 const href = `/${entry.collection}/${entry.id}/`;
 const label = entry.collection === 'research' ? (entry.data.venue || 'Research') : (entry.data.category || 'Project');
 const action = entry.collection === 'research' ? 'Read research' : 'Explore project';
+const image = entry.data.image || (entry.collection === 'research' ? defaultResearchImage : '');
 ---
 
 <article class="entry-card">
   <a class="entry-card-image" href={href} aria-label={`Read ${entry.data.title}`}>
-    {entry.data.image ? <img src={entry.data.image} alt="" loading="lazy" /> : <span class="image-pattern" aria-hidden="true"><span>◌</span></span>}
+    {image ? <img src={image} alt="" loading="lazy" /> : <span class="image-pattern" aria-hidden="true"><span>◌</span></span>}
   </a>
   <div class="entry-card-body">
     <div class="entry-meta"><span>{label}</span><span>{dateLabel(entry.data.date)}</span></div>
