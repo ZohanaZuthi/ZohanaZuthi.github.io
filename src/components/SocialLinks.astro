@@ -1,0 +1,23 @@
+---
+import profile from '../lib/profile';
+import { gmailComposeUrl } from '../lib/contact';
+import Icon from './Icon.astro';
+
+interface Props { variant?: 'sidebar' | 'footer' | 'hero'; }
+const { variant = 'sidebar' } = Astro.props;
+const links = [
+  { icon: 'email', label: 'Email', href: profile.email ? gmailComposeUrl(profile.email) : '' },
+  { icon: 'linkedin', label: 'LinkedIn', href: profile.linkedin },
+  { icon: 'github', label: 'GitHub', href: profile.github },
+  { icon: 'scholar', label: 'Google Scholar', href: profile.scholar },
+  { icon: 'orcid', label: 'ORCID', href: profile.orcid },
+  { icon: 'researchgate', label: 'ResearchGate', href: profile.researchgate },
+  { icon: 'arxiv', label: 'arXiv', href: profile.arxiv },
+  { icon: 'pubmed', label: 'PubMed', href: profile.pubmed },
+  { icon: 'cv', label: 'CV', href: profile.cv },
+].filter(link => link.href.trim());
+---
+
+{links.length > 0 && <nav class:list={['social-links', `social-links-${variant}`]} aria-label={`${variant === 'sidebar' ? 'Profile' : variant === 'hero' ? 'Home' : 'Footer'} contact and social links`}>
+  {links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer"><Icon name={link.icon} /><span>{link.label}</span></a>)}
+</nav>}

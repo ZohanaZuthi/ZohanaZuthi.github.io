@@ -49,3 +49,24 @@ Pages CMS reads `.pages.yml` and saves edits to this repository. Entries with `p
 
 For the easiest GitHub Pages URL, create the client's repository as `USERNAME.github.io`, replacing `USERNAME` with their GitHub username. GitHub Pages can then serve the site at `https://USERNAME.github.io/` without extra path configuration. The repository must be public on GitHub Free. Uploaded media and draft content in a public repository are visible in its source, even if the site hides draft entries.
 # ZohanaZuthi.github.io
+
+
+## Profile links and education
+
+The sidebar, homepage, and footer reuse the contact links from **Pages CMS → Profile**. Optional links include LinkedIn, GitHub, Google Scholar, ORCID, ResearchGate, arXiv, PubMed, email, and CV. Empty fields stay hidden.
+
+The university line uses the first education entry with an institution in **Experience, education & skills → Education**. Put the institution you want displayed first. No profile or career data needs to be recreated for this update.
+
+The site uses a self-hosted Inter font, wider content columns, and justified long paragraphs on desktop. Mobile paragraphs stay left-aligned for readability.
+
+## Updating an existing client portfolio
+
+Provide changes through a pull request against the client's existing repository. Keep these client-owned paths unchanged:
+
+- `src/data/`
+- `src/content/`
+- `public/uploads/`
+
+Review the pull request's **Files changed** tab before merging. This display update changes components, layout, styles, helper modules, the CMS field definitions, font assets, and package files; it does not replace client content. Merge both `package.json` and `package-lock.json` together. Review conflicts or custom code changes before merging.
+
+Applying a new template ZIP over the whole repository can overwrite content. A template copy does not automatically synchronize updates, so each update should be reviewed and tested in the client repository. Merging the reviewed code update triggers the normal deployment.

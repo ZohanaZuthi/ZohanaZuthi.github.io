@@ -1,0 +1,12 @@
+---
+import career from '../lib/career';
+import Icon from './Icon.astro';
+
+interface Props { hero?: boolean; }
+const { hero = false } = Astro.props;
+const education = career.education.find(item => item.institution?.trim());
+---
+
+{education && <p class:list={['education-summary', { 'education-summary-hero': hero }]}>
+  <Icon name="graduation" /><span>{education.institution}</span>
+</p>}

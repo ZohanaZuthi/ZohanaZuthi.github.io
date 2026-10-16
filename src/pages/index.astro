@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import EntryCard from '../components/EntryCard.astro';
 import ProfileOrbit from '../components/ProfileOrbit.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import EducationSummary from '../components/EducationSummary.astro';
 import profile from '../lib/profile';
 import { gmailComposeUrl } from '../lib/contact';
 import site from '../data/site.json';
@@ -21,12 +23,14 @@ const selected = (featured.length ? featured : projects).slice(0, 3);
       <p class="eyebrow">Hello, I'm</p>
       <h1 id="home-title">{profile.name}<span class="accent-dot">.</span></h1>
       <p class="hero-role">{profile.role}</p>
+      <EducationSummary hero />
       <p class="hero-intro">{profile.intro}</p>
       <div class="hero-actions">
         <a class="button button-primary" href="/projects/">Explore my work <span aria-hidden="true">↗</span></a>
         <a class="button button-quiet" href="/about/">More about me <span aria-hidden="true">→</span></a>
       </div>
       <p class="hero-location">{profile.location || site.tagline}</p>
+      <SocialLinks variant="hero" />
     </div>
   </section>
 

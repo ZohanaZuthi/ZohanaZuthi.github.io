@@ -13,6 +13,10 @@ const defaults = {
   linkedin: '',
   github: '',
   scholar: '',
+  orcid: '',
+  researchgate: '',
+  arxiv: '',
+  pubmed: '',
 };
 
 const profile = { ...defaults, ...data };

@@ -1,9 +1,12 @@
 ---
 import profile from '../lib/profile';
-import { gmailComposeUrl } from '../lib/contact';
 import site from '../data/site.json';
 import ProfilePortrait from '../components/ProfilePortrait.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import EducationSummary from '../components/EducationSummary.astro';
+import Icon from '../components/Icon.astro';
+import '@fontsource-variable/inter';
 import '../styles/global.css';
 
 interface Props {
@@ -15,11 +18,6 @@ interface Props {
 const { title, description = site.description, home = false } = Astro.props;
 const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} · ${profile.role}`;
 const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).slice(0, 2).join('').toUpperCase();
-const links = [
-  { label: 'LinkedIn', href: profile.linkedin },
-  { label: 'GitHub', href: profile.github },
-  { label: 'Scholar', href: profile.scholar },
-].filter(link => link.href);
 ---
 
 <!doctype html>
@@ -66,16 +64,16 @@ const links = [
           <p class="eyebrow">Portfolio</p>
           <h2>{profile.name}</h2>
           <p class="sidebar-role">{profile.role}</p>
-          {profile.location && <p class="sidebar-location"><span aria-hidden="true">⌖</span> {profile.location}</p>}
+          <EducationSummary />
+          {profile.location && <p class="sidebar-location"><Icon name="location" /><span>{profile.location}</span></p>}
           <div class="sidebar-rule"></div>
-          {profile.email && <a class="contact-link" href={gmailComposeUrl(profile.email)} target="_blank" rel="noopener noreferrer">Get in touch <span aria-hidden="true">↗</span></a>}
-          {links.length > 0 && <div class="social-links">{links.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</div>}
+          <SocialLinks />
         </aside>}
 
         <main id="main" class="main-content"><slot /></main>
       </div>
 
-      <footer class="footer"><span>© {new Date().getFullYear()} {profile.name}</span><span>Built with care and curiosity.</span></footer>
+      <footer class="footer"><span>© {new Date().getFullYear()} {profile.name}</span><SocialLinks variant="footer" /></footer>
     </div>
   </body>
 </html>
