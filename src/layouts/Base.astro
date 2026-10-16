@@ -29,7 +29,7 @@ const links = [
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f8fafc" />
     <script is:inline>
-      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      let theme = 'light';
       try {
         const saved = localStorage.getItem('portfolio-theme');
         if (saved === 'dark' || saved === 'light') theme = saved;

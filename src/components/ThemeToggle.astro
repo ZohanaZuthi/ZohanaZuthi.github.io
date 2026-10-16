@@ -9,7 +9,6 @@
 
 <script>
   const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
-  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
 
   const applyTheme = (theme: string) => {
     document.documentElement.dataset.theme = theme;
@@ -29,11 +28,4 @@
     });
   }
 
-  systemTheme.addEventListener('change', event => {
-    try {
-      const saved = localStorage.getItem('portfolio-theme');
-      if (saved === 'light' || saved === 'dark') return;
-    } catch {}
-    applyTheme(event.matches ? 'dark' : 'light');
-  });
 </script>
