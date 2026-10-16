@@ -17,8 +17,9 @@ const selected = (featured.length ? featured : projects).slice(0, 3);
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-hero-visual"><ProfileOrbit /></div>
     <div class="home-hero-copy">
-      <p class="eyebrow">Hello, I'm {profile.name}</p>
-      <h1 id="home-title">{profile.role}<span class="accent-dot">.</span></h1>
+      <p class="eyebrow">Hello, I'm</p>
+      <h1 id="home-title">{profile.name}<span class="accent-dot">.</span></h1>
+      <p class="hero-role">{profile.role}</p>
       <p class="hero-intro">{profile.intro}</p>
       <div class="hero-actions">
         <a class="button button-primary" href="/projects/">Explore my work <span aria-hidden="true">↗</span></a>

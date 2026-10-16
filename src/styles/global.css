@@ -149,10 +149,11 @@ h1, h2 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -.055em
 .orbit-spark { position: absolute; color: #e7bd87; font-size: 1.75rem; z-index: 2; }
 .orbit-spark-one { top: 14%; right: 13%; }
 .orbit-spark-two { bottom: 14%; left: 12%; color: #8adbd1; font-size: 1.25rem; }
-.home-hero-copy { position: relative; z-index: 2; max-width: 650px; }
+.home-hero-copy { position: relative; z-index: 2; min-width: 0; max-width: 650px; }
 .home-hero .eyebrow { color: #96d6cb; font-size: 0.75rem; }
 .home-hero h1 { color: #fff; font-size: clamp(3rem, 6.4125vw, 5.125rem); font-weight: 400; line-height: 1.06; margin: 0 0 26px; }
 .home-hero .accent-dot { color: #88d5ca; }
+.hero-role { color: #96d6cb; font-size: 1.125rem; font-weight: 650; line-height: 1.5; margin: 0 0 18px; }
 .home-hero .hero-intro { color: #c7d4dd; font-size: 1.125rem; }
 .home-hero .button-primary { background: #83d3c8; color: #14263d; }
 .home-hero .button-primary:hover { background: #a5e4dc; }
