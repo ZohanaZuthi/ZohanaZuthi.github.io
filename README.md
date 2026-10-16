@@ -73,4 +73,4 @@ Applying a new template ZIP over the whole repository can overwrite content. A t
 
 ## Adding more profile links
 
-In Pages CMS → Profile, use the optional IEEE Xplore URL field, or add entries under **Additional links**. Paste your full profile URL; the platform name and icon are detected automatically for supported sites. An optional label can override the displayed name. Other websites use a globe icon. Empty entries are hidden, and duplicate URLs appear once. Links are shared across the homepage, sidebar, and footer. Existing profile links do not need to be re-entered.
+In Pages CMS → Profile, use the optional IEEE Xplore URL field, or add entries under **Additional links**. Paste your full profile URL; the platform name and icon are detected automatically for supported sites. The optional **Nickname** field overrides the displayed name, for example “My IEEE profile”. Other websites use a globe icon. Empty entries are hidden, and duplicate URLs appear once. Links are shared across the homepage, sidebar, and footer. Existing profile links do not need to be re-entered.

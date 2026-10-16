@@ -50,7 +50,7 @@ content:
         description: "Optional. Paste your profile URL. Recognized websites get their platform icon automatically; other websites get a globe. Links appear on the homepage, sidebar and footer."
         fields:
           - { name: url, label: Profile or website URL, type: string, required: true }
-          - { name: label, label: Link label, type: string, description: "Optional. Leave empty to use the detected website name." }
+          - { name: label, label: Nickname, type: string, description: "Optional. Display a nickname such as My IEEE profile instead of the official platform name. Leave empty to use the detected website name." }
 
   - name: site
     label: Site settings
