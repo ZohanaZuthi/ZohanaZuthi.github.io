@@ -17,6 +17,8 @@ const defaults = {
   researchgate: '',
   arxiv: '',
   pubmed: '',
+  ieee: '',
+  links: [] as { url?: string; label?: string }[],
 };
 
 const profile = { ...defaults, ...data };

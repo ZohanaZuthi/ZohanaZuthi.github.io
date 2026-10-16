@@ -1,7 +1,15 @@
 ---
+import { siIeee, siOrcid, siResearchgate, siArxiv, siGooglescholar, siGithub, siPubmed, siGitlab, siYoutube, siFacebook, siInstagram, siStackoverflow, siKaggle, siMedium, siX } from 'simple-icons';
+const brands: Record<string, { path: string }> = {
+  ieee: siIeee, orcid: siOrcid, researchgate: siResearchgate, arxiv: siArxiv,
+  scholar: siGooglescholar, github: siGithub, pubmed: siPubmed, gitlab: siGitlab,
+  youtube: siYoutube, facebook: siFacebook, instagram: siInstagram,
+  stackoverflow: siStackoverflow, kaggle: siKaggle, medium: siMedium, x: siX,
+};
 interface Props { name: string; }
 const { name } = Astro.props;
 const paths: Record<string, string> = {
+  website: 'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z M2 12h20 M12 2c5 5 5 15 0 20-5-5-5-15 0-20Z',
   email: 'M3 5h18v14H3z M3 6l9 7 9-7',
   location: 'M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z M15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
   graduation: 'M2 9l10-5 10 5-10 5-10-5Z M6 11v6c4 3 8 3 12 0v-6 M22 9v8',
@@ -16,5 +24,5 @@ const paths: Record<string, string> = {
 ---
 
 <svg class="link-icon" aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-  {name === 'researchgate' ? <text x="2" y="17" fill="currentColor" stroke="none" font-family="Arial, sans-serif" font-size="14" font-weight="700">R<tspan dy="-6" font-size="10">G</tspan></text> : <path d={paths[name] || paths.pubmed} />}
+  {brands[name] ? <path d={brands[name].path} fill="currentColor" stroke="none" /> : <path d={paths[name] || paths.website} />}
 </svg>

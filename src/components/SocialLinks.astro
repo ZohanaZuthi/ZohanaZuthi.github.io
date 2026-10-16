@@ -2,10 +2,11 @@
 import profile from '../lib/profile';
 import { gmailComposeUrl } from '../lib/contact';
 import Icon from './Icon.astro';
+import { socialLink } from '../lib/social-link';
 
 interface Props { variant?: 'sidebar' | 'footer' | 'hero'; }
 const { variant = 'sidebar' } = Astro.props;
-const links = [
+const savedLinks = [
   { icon: 'email', label: 'Email', href: profile.email ? gmailComposeUrl(profile.email) : '' },
   { icon: 'linkedin', label: 'LinkedIn', href: profile.linkedin },
   { icon: 'github', label: 'GitHub', href: profile.github },
@@ -14,8 +15,15 @@ const links = [
   { icon: 'researchgate', label: 'ResearchGate', href: profile.researchgate },
   { icon: 'arxiv', label: 'arXiv', href: profile.arxiv },
   { icon: 'pubmed', label: 'PubMed', href: profile.pubmed },
+  { icon: 'ieee', label: 'IEEE Xplore', href: profile.ieee },
   { icon: 'cv', label: 'CV', href: profile.cv },
-].filter(link => link.href.trim());
+].filter(link => typeof link.href === 'string' && link.href.trim()).map(link => ({ ...link, href: link.href.trim() }));
+const extraLinks = (Array.isArray(profile.links) ? profile.links : [])
+  .map(link => socialLink(link?.url, link?.label))
+  .filter((link): link is NonNullable<typeof link> => link !== null);
+const links = [...savedLinks, ...extraLinks].filter((link, index, all) =>
+  all.findIndex(item => item.href.replace(/\/$/, '') === link.href.replace(/\/$/, '')) === index
+);
 ---
 
 {links.length > 0 && <nav class:list={['social-links', `social-links-${variant}`]} aria-label={`${variant === 'sidebar' ? 'Profile' : variant === 'hero' ? 'Home' : 'Footer'} contact and social links`}>

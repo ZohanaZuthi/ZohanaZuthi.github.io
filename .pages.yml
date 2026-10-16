@@ -42,6 +42,15 @@ content:
       - { name: researchgate, label: ResearchGate URL, type: string }
       - { name: arxiv, label: arXiv URL, type: string }
       - { name: pubmed, label: PubMed URL, type: string }
+      - { name: ieee, label: IEEE Xplore URL, type: string, description: "Optional. Paste your IEEE Xplore author profile URL." }
+      - name: links
+        label: Additional links
+        type: object
+        list: true
+        description: "Optional. Paste your profile URL. Recognized websites get their platform icon automatically; other websites get a globe. Links appear on the homepage, sidebar and footer."
+        fields:
+          - { name: url, label: Profile or website URL, type: string, required: true }
+          - { name: label, label: Link label, type: string, description: "Optional. Leave empty to use the detected website name." }
 
   - name: site
     label: Site settings
