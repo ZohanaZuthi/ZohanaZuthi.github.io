@@ -7,6 +7,7 @@ image: /uploads/images/screenshot-from-2026-08-13-12-55-00.png
 gallery:
   - image: /uploads/images/screenshot-from-2026-08-12-18-18-09.png
     caption: mmklmm
+  - image: /uploads/images/screenshot-from-2026-08-15-21-36-34.png
 published: true
 ---
 This is sample content. Replace it with your achievement.
