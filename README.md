@@ -84,3 +84,11 @@ For multiple achievement photos, open Pages CMS → Achievements & awards → an
 Certificate images use a landscape A4-style frame on the recognition listing and certificate detail pages. The full image is contained within the frame; portrait scans are supported without cropping. Existing image and PDF fields remain compatible.
 
 Experience descriptions preserve Enter/newline formatting and blank lines. Use the optional Related URL field to link to an organization, project or reference website. Leaving it empty hides the link.
+
+## Homepage gallery and named experience links
+
+For award photos, select **Show in homepage gallery** on each photo (or **Show cover in homepage gallery** on the award). No duplicate uploads or entries are needed. For unrelated photos, add a published entry under **Pages CMS → Gallery**, with a title, caption, date, optional location and related URL. Up to six selected photos appear below Milestones; **View full gallery** shows all published gallery and award photos. Reused image paths appear once.
+
+Local gallery photos get 320px/640px WebP thumbnails automatically before `npm run dev` and `npm run build`. Gallery cards and award galleries use these shared thumbnails and lazy loading. Clicking a photo opens the original. Generated files are ignored by Git; original uploads remain untouched. Remote or unsupported images use their original URL. Run `npm run thumbnails` and restart the dev server after adding photos locally.
+
+Experience links use **Related URL** as the destination and **Link title** as the clickable text. Without a custom title, the organization name or “View related page” is used. Certificates appear before awards on Recognition.

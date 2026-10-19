@@ -1,4 +1,5 @@
 ---
+import { galleryPreview } from '../lib/gallery-image.js';
 interface Props { photos?: { image: string; caption?: string }[]; title: string; cover?: string; inline?: boolean; }
 const { photos = [], title, cover, inline = false } = Astro.props;
 const images = [
@@ -10,7 +11,7 @@ const images = [
 {images.length > 0 && <section class:list={['achievement-gallery', { 'achievement-gallery-inline': inline }]} aria-label={`${title} photo gallery`}>
   {!inline && <h2>Gallery</h2>}
   <div class="gallery-grid">{images.map((photo, index) => <figure>
-    <a href={photo.image} target="_blank" rel="noopener noreferrer" aria-label={`Open photo ${index + 1}: ${photo.caption || title}`}><img src={photo.image} alt={photo.caption || `${title}, photo ${index + 1}`} loading="lazy" /></a>
+    <a href={photo.image} target="_blank" rel="noopener noreferrer" aria-label={`Open photo ${index + 1}: ${photo.caption || title}`}><img src={galleryPreview(photo.image).src} srcset={galleryPreview(photo.image).srcset} sizes="(max-width: 760px) 90vw, (max-width: 1050px) 45vw, 30vw" width="640" height="480" alt={photo.caption || `${title}, photo ${index + 1}`} loading="lazy" decoding="async" /></a>
     {photo.caption && <figcaption>{photo.caption}</figcaption>}
   </figure>)}</div>
 </section>}

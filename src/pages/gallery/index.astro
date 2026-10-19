@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import GalleryCard from '../../components/GalleryCard.astro';
+import { galleryItems } from '../../lib/gallery';
+const items = await galleryItems();
+---
+
+<Base title="Gallery" description="Photos, achievements and memorable moments.">
+  <section class="page-intro"><p class="eyebrow">Moments &amp; milestones / {items.length} photos</p><h1>Gallery<span class="accent-dot">.</span></h1><p>Photos, achievements, and memorable moments along the way.</p></section>
+  {items.length ? <div class="gallery-grid gallery-listing">{items.map(item => <GalleryCard item={item} />)}</div> : <p class="empty-message">Photos will appear here when published.</p>}
+</Base>

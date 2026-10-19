@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
 
-type CollectionName = 'projects' | 'research' | 'certificates' | 'achievements';
+type CollectionName = 'projects' | 'research' | 'certificates' | 'achievements' | 'gallery';
 
 export const defaultResearchImage = '/images/research-default.png';
 
@@ -12,4 +12,3 @@ export async function published<T extends CollectionName>(name: T) {
 export function dateLabel(date: Date) {
   return new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(date);
 }
-

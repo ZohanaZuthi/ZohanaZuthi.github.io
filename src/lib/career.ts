@@ -1,7 +1,7 @@
 import data from '../data/career.json';
 
 interface Career {
-  experience: { role: string; organization?: string; period?: string; description?: string; url?: string }[];
+  experience: { role: string; organization?: string; period?: string; description?: string; url?: string; urlTitle?: string }[];
   education: { qualification: string; institution?: string; period?: string; description?: string }[];
   skills: { category: string; items?: string }[];
 }

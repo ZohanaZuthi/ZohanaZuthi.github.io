@@ -18,7 +18,7 @@ const experience = career.experience.map(item => ({ ...item, url: socialLink(ite
 
   <section class="recognition-section" aria-labelledby="experience-heading">
     <div class="section-top"><div><p class="eyebrow">02 / Journey</p><h2 id="experience-heading">Experience</h2></div></div>
-    {experience.length ? <div class="timeline-list">{experience.map(item => <article class="timeline-item"><span class="timeline-period">{item.period}</span><div><h3>{item.role}</h3><p class="item-source">{item.organization}</p>{item.description && <p class="timeline-description">{item.description}</p>}{item.url && <a class="text-link experience-link" href={item.url} target="_blank" rel="noopener noreferrer">Related link <span aria-hidden="true">↗</span></a>}</div></article>)}</div> : <p class="empty-message">Experience will appear here when added.</p>}
+    {experience.length ? <div class="timeline-list">{experience.map(item => <article class="timeline-item"><span class="timeline-period">{item.period}</span><div><h3>{item.role}</h3><p class="item-source">{item.organization}</p>{item.description && <p class="timeline-description">{item.description}</p>}{item.url && <a class="text-link experience-link" href={item.url} target="_blank" rel="noopener noreferrer">{item.urlTitle?.trim() || item.organization || 'View related page'} <span aria-hidden="true">↗</span></a>}</div></article>)}</div> : <p class="empty-message">Experience will appear here when added.</p>}
   </section>
 
   <section class="recognition-section about-last" aria-labelledby="skills-heading">

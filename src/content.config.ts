@@ -46,9 +46,21 @@ const achievements = defineCollection({
   schema: z.object({
     ...common,
     organization: z.string().optional(),
-    gallery: z.array(z.object({ image: z.string().min(1), caption: z.string().optional() })).default([]),
+    featureCover: z.boolean().default(false),
+    gallery: z.array(z.object({ image: z.string().min(1), caption: z.string().optional(), title: z.string().optional(), featured: z.boolean().default(false) })).default([]),
     link: z.string().optional(),
   }),
 });
 
-export const collections = { projects, research, certificates, achievements };
+const gallery = defineCollection({
+  loader: glob({ base: './src/content', pattern: 'gallery/**/*.md' }),
+  schema: z.object({
+    ...common,
+    image: z.string().min(1),
+    featured: z.boolean().default(false),
+    location: z.string().optional(),
+    link: z.string().optional(),
+  }),
+});
+
+export const collections = { projects, research, certificates, achievements, gallery };

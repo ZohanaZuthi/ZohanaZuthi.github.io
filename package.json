@@ -8,11 +8,15 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "screenshots": "node scripts/project-previews.mjs"
+    "screenshots": "node scripts/project-previews.mjs",
+    "thumbnails": "node scripts/gallery-thumbnails.mjs",
+    "predev": "npm run thumbnails",
+    "prebuild": "npm run thumbnails"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
     "astro": "^7.3.8",
+    "sharp": "^0.35.5",
     "simple-icons": "^16.35.0",
     "three": "^0.186.1"
   },

@@ -231,6 +231,15 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 .hero-intro, .section-copy p, .page-intro>p:last-child { white-space: pre-line; }
 .prose, .entry-card-body, .certificate-body, .timeline-item { overflow-wrap: anywhere; }
 
+.gallery-card { min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.gallery-card-photo { display: block; background: var(--soft); }
+.gallery-card-photo img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; }
+.gallery-card-copy { padding: 20px; overflow-wrap: anywhere; }
+.gallery-card h3 { font-size: 1.15rem; line-height: 1.4; margin: 12px 0 8px; }
+.gallery-card-copy>p:not(.entry-meta) { color: var(--secondary); font-size: .875rem; line-height: 1.7; margin: 0 0 14px; }
+.gallery-card-copy p.gallery-location { color: var(--accent); }
+.gallery-listing { padding-bottom: 80px; }
+
 /* Preserve the way career descriptions are entered in the CMS. */
 .timeline-item p.timeline-description { white-space: pre-wrap; text-align: start; text-align-last: start; }
 .experience-link { margin-top: 12px; }
@@ -257,7 +266,7 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 .achievement-gallery h2 { font-size: 1.6rem; margin: 0 0 24px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .gallery-grid figure { margin: 0; min-width: 0; }
-.gallery-grid a { display: block; background: var(--soft); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.gallery-grid figure>a { display: block; background: var(--soft); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
 .gallery-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
 .gallery-grid figcaption { color: var(--secondary); font-size: .8125rem; line-height: 1.6; margin-top: 10px; overflow-wrap: anywhere; }
 

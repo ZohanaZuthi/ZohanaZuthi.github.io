@@ -77,6 +77,7 @@ content:
           - { name: period, label: Dates, type: string }
           - { name: description, label: Description, type: text, description: "Press Enter for a new line. Blank lines and line breaks are preserved on the About page." }
           - { name: url, label: Related URL, type: string, description: "Optional. Add an organization, project or reference website." }
+          - { name: urlTitle, label: Link title, type: string, description: "Optional. The clickable text, such as Research internship or Organization website. The URL itself is never displayed." }
       - name: education
         label: Education
         type: object
@@ -177,6 +178,7 @@ content:
         label: Image
         type: image
         options: { media: images }
+      - { name: featureCover, label: Show cover in homepage gallery, type: boolean }
       - name: gallery
         label: Gallery photos
         type: object
@@ -189,6 +191,28 @@ content:
             required: true
             options: { media: images }
           - { name: caption, label: Caption, type: string }
+          - { name: title, label: Photo title, type: string, description: "Optional. Uses the award title when empty." }
+          - { name: featured, label: Show in homepage gallery, type: boolean }
       - { name: link, label: More information URL, type: string }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Details, type: rich-text }
+
+  - name: gallery
+    label: Gallery
+    type: collection
+    path: src/content/gallery
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: summary, label: Caption or short description, type: text, required: true }
+      - { name: date, label: Date, type: date, required: true }
+      - name: image
+        label: Photo
+        type: image
+        required: true
+        options: { media: images }
+      - { name: location, label: Location or event, type: string }
+      - { name: link, label: Related URL, type: string }
+      - { name: featured, label: Show in homepage gallery, type: boolean }
+      - { name: published, label: Published, type: boolean }
