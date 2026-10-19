@@ -75,7 +75,8 @@ content:
           - { name: role, label: Role, type: string, required: true }
           - { name: organization, label: Organization, type: string }
           - { name: period, label: Dates, type: string }
-          - { name: description, label: Description, type: text }
+          - { name: description, label: Description, type: text, description: "Press Enter for a new line. Blank lines and line breaks are preserved on the About page." }
+          - { name: url, label: Related URL, type: string, description: "Optional. Add an organization, project or reference website." }
       - name: education
         label: Education
         type: object

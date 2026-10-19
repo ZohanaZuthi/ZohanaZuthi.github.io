@@ -77,8 +77,10 @@ In Pages CMS → Profile, use the optional IEEE Xplore URL field, or add entries
 
 ## Homepage, achievement galleries and certificate images
 
-The homepage shows About, Research & publications, Projects, then Milestones. Explore my work opens Research. Download CV uses the PDF saved in Profile → CV and is hidden if no CV is uploaded. The About page lists education, experience and skills; the About me text remains on the homepage.
+The homepage shows About, Education & academics, Research & publications, Projects, then Milestones. Education is shared with the About page and managed in Experience, education & skills → Education. Explore my work opens Research. Download CV uses the PDF saved in Profile → CV and is hidden if no CV is uploaded. The About page lists education, experience and skills; the About me text remains on the homepage.
 
-For multiple achievement photos, open Pages CMS → Achievements & awards → an entry → Gallery photos. Add photos with optional captions. The existing Image field remains the cover; when no cover is set, the first gallery photo is used in the recognition listing. Gallery photos open at full size when clicked.
+For multiple achievement photos, open Pages CMS → Achievements & awards → an entry → Gallery photos. Add photos with optional captions. All photos are displayed directly on the Recognition page, alongside the existing cover image. A cover already included in the gallery is shown only once. Gallery photos also appear on the achievement detail page and open at full size when clicked.
 
 Certificate images use a landscape A4-style frame on the recognition listing and certificate detail pages. The full image is contained within the frame; portrait scans are supported without cropping. Existing image and PDF fields remain compatible.
+
+Experience descriptions preserve Enter/newline formatting and blank lines. Use the optional Related URL field to link to an organization, project or reference website. Leaving it empty hides the link.

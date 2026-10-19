@@ -1,0 +1,8 @@
+---
+import career from '../lib/career';
+---
+
+{career.education.length ? <div class="timeline-list">{career.education.map(item => <article class="timeline-item">
+  <span class="timeline-period">{item.period}</span>
+  <div><h3>{item.qualification}</h3>{item.institution && <p class="item-source">{item.institution}</p>}{item.description && <p class="timeline-description">{item.description}</p>}</div>
+</article>)}</div> : <p class="empty-message">Education will appear here when added.</p>}

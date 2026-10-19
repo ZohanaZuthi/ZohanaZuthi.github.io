@@ -1,11 +1,14 @@
 ---
-interface Props { photos?: { image: string; caption?: string }[]; title: string; }
-const { photos = [], title } = Astro.props;
-const images = photos.filter(photo => photo.image.trim());
+interface Props { photos?: { image: string; caption?: string }[]; title: string; cover?: string; inline?: boolean; }
+const { photos = [], title, cover, inline = false } = Astro.props;
+const images = [
+  ...(cover && !photos.some(photo => photo.image === cover) ? [{ image: cover, caption: '' }] : []),
+  ...photos,
+].filter(photo => photo.image.trim());
 ---
 
-{images.length > 0 && <section class="achievement-gallery" aria-label={`${title} photo gallery`}>
-  <h2>Gallery</h2>
+{images.length > 0 && <section class:list={['achievement-gallery', { 'achievement-gallery-inline': inline }]} aria-label={`${title} photo gallery`}>
+  {!inline && <h2>Gallery</h2>}
   <div class="gallery-grid">{images.map((photo, index) => <figure>
     <a href={photo.image} target="_blank" rel="noopener noreferrer" aria-label={`Open photo ${index + 1}: ${photo.caption || title}`}><img src={photo.image} alt={photo.caption || `${title}, photo ${index + 1}`} loading="lazy" /></a>
     {photo.caption && <figcaption>{photo.caption}</figcaption>}

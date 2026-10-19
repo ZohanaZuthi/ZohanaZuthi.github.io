@@ -4,6 +4,7 @@ import EntryCard from '../components/EntryCard.astro';
 import ProfileOrbit from '../components/ProfileOrbit.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import EducationSummary from '../components/EducationSummary.astro';
+import EducationTimeline from '../components/EducationTimeline.astro';
 import profile from '../lib/profile';
 import { gmailComposeUrl } from '../lib/contact';
 import site from '../data/site.json';
@@ -39,18 +40,23 @@ const selected = (featured.length ? featured : projects).slice(0, 3);
     <div class="section-copy"><p>{profile.about}</p><a class="text-link" href="/about/">Experience, education & skills <span aria-hidden="true">↗</span></a></div>
   </section>
 
+  <section class="section" aria-labelledby="education-heading">
+    <div class="section-top"><div><p class="eyebrow">02 / Academic background</p><h2 id="education-heading">Education &amp; academics</h2></div></div>
+    <EducationTimeline />
+  </section>
+
   <section class="section" aria-labelledby="research-heading">
-    <div class="section-top"><div><p class="eyebrow">02 / Research</p><h2 id="research-heading">Research &amp; publications</h2></div><a class="text-link" href="/research/">All {research.length} entries <span aria-hidden="true">↗</span></a></div>
+    <div class="section-top"><div><p class="eyebrow">03 / Research</p><h2 id="research-heading">Research &amp; publications</h2></div><a class="text-link" href="/research/">All {research.length} entries <span aria-hidden="true">↗</span></a></div>
     {research.length ? <div class="home-research-list">{research.slice(0, 3).map(entry => <a class="home-research-item" href={`/research/${entry.id}/`}><span class="entry-meta">{entry.data.venue || 'Research'} · {dateLabel(entry.data.date)}</span><strong>{entry.data.title}</strong><span aria-hidden="true">↗</span></a>)}</div> : <p class="empty-message">Research will appear here when published.</p>}
   </section>
 
   <section class="section" aria-labelledby="work-heading">
-    <div class="section-top"><div><p class="eyebrow">03 / Selected work</p><h2 id="work-heading">Featured projects</h2></div><a class="text-link" href="/projects/">All {projects.length} projects <span aria-hidden="true">↗</span></a></div>
+    <div class="section-top"><div><p class="eyebrow">04 / Selected work</p><h2 id="work-heading">Featured projects</h2></div><a class="text-link" href="/projects/">All {projects.length} projects <span aria-hidden="true">↗</span></a></div>
     {selected.length ? <div class="card-grid home-card-grid">{selected.map(entry => <EntryCard entry={entry} />)}</div> : <p class="empty-message">Projects will appear here when published.</p>}
   </section>
 
   <section class="section" aria-labelledby="recognition-heading">
-    <div class="section-top"><div><p class="eyebrow">04 / Recognition</p><h2 id="recognition-heading">Milestones</h2></div><a class="text-link" href="/recognition/">All recognition <span aria-hidden="true">↗</span></a></div>
+    <div class="section-top"><div><p class="eyebrow">05 / Recognition</p><h2 id="recognition-heading">Milestones</h2></div><a class="text-link" href="/recognition/">All recognition <span aria-hidden="true">↗</span></a></div>
     {achievements.length ? <div class="milestone-grid">{achievements.slice(0, 2).map(entry => <a class="milestone" href={`/recognition/achievements/${entry.id}/`}><span class="milestone-symbol" aria-hidden="true">✦</span><div><span class="entry-meta">{dateLabel(entry.data.date)}</span><h3>{entry.data.title}</h3><p>{entry.data.summary}</p></div></a>)}</div> : <p class="empty-message">Achievements will appear here when published.</p>}
   </section>
 

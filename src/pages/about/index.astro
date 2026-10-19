@@ -2,6 +2,10 @@
 import Base from '../../layouts/Base.astro';
 import profile from '../../lib/profile';
 import career from '../../lib/career';
+import EducationTimeline from '../../components/EducationTimeline.astro';
+import { socialLink } from '../../lib/social-link';
+
+const experience = career.experience.map(item => ({ ...item, url: socialLink(item.url)?.href }));
 ---
 
 <Base title="About" description={`About ${profile.name}: ${profile.role}`}>
@@ -9,12 +13,12 @@ import career from '../../lib/career';
 
   <section class="recognition-section" aria-labelledby="education-heading">
     <div class="section-top"><div><p class="eyebrow">01 / Learning</p><h2 id="education-heading">Academic education</h2></div></div>
-    {career.education.length ? <div class="timeline-list">{career.education.map(item => <article class="timeline-item"><span class="timeline-period">{item.period}</span><div><h3>{item.qualification}</h3><p class="item-source">{item.institution}</p><p>{item.description}</p></div></article>)}</div> : <p class="empty-message">Education will appear here when added.</p>}
+    <EducationTimeline />
   </section>
 
   <section class="recognition-section" aria-labelledby="experience-heading">
     <div class="section-top"><div><p class="eyebrow">02 / Journey</p><h2 id="experience-heading">Experience</h2></div></div>
-    {career.experience.length ? <div class="timeline-list">{career.experience.map(item => <article class="timeline-item"><span class="timeline-period">{item.period}</span><div><h3>{item.role}</h3><p class="item-source">{item.organization}</p><p>{item.description}</p></div></article>)}</div> : <p class="empty-message">Experience will appear here when added.</p>}
+    {experience.length ? <div class="timeline-list">{experience.map(item => <article class="timeline-item"><span class="timeline-period">{item.period}</span><div><h3>{item.role}</h3><p class="item-source">{item.organization}</p>{item.description && <p class="timeline-description">{item.description}</p>}{item.url && <a class="text-link experience-link" href={item.url} target="_blank" rel="noopener noreferrer">Related link <span aria-hidden="true">↗</span></a>}</div></article>)}</div> : <p class="empty-message">Experience will appear here when added.</p>}
   </section>
 
   <section class="recognition-section about-last" aria-labelledby="skills-heading">
