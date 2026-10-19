@@ -255,13 +255,14 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 .detail-page>.certificate-frame { max-width: 960px; margin-bottom: 40px; }
 .achievement-gallery { margin: 40px 0; }
 .achievement-gallery h2 { font-size: 1.6rem; margin: 0 0 24px; }
-.gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .gallery-grid figure { margin: 0; min-width: 0; }
 .gallery-grid a { display: block; background: var(--soft); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
 .gallery-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
 .gallery-grid figcaption { color: var(--secondary); font-size: .8125rem; line-height: 1.6; margin-top: 10px; overflow-wrap: anywhere; }
 
 @media (max-width: 1050px) {
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .site-shell { padding: var(--navbar-height) 28px 0; }
   .topbar { left: 28px; right: 28px; }
   .page-grid { grid-template-columns: 220px minmax(0, 1fr); gap: 28px; }
