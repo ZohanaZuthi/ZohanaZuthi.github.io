@@ -4,7 +4,9 @@
       "role": "Example: Your current role",
       "organization": "Organization name",
       "period": "2024 – Present",
-      "description": "Briefly describe what you do and one meaningful result."
+      "description": "Briefly describe what you do and one meaningful result.",
+      "url": "https://www.facebook.com/",
+      "urlTitle": "Facebook"
     },
     {
       "role": "Example: Previous role or internship",
