@@ -1,8 +1,10 @@
 ---
 import career from '../lib/career';
+import { socialLink } from '../lib/social-link';
+const education = career.education.map(item => ({ ...item, url: socialLink(item.url)?.href }));
 ---
 
-{career.education.length ? <div class="timeline-list">{career.education.map(item => <article class="timeline-item">
+{education.length ? <div class="timeline-list">{education.map(item => <article class="timeline-item">
   <span class="timeline-period">{item.period}</span>
-  <div><h3>{item.qualification}</h3>{item.institution && <p class="item-source">{item.institution}</p>}{item.description && <p class="timeline-description">{item.description}</p>}</div>
+  <div><h3>{item.qualification}</h3>{item.institution && <p class="item-source">{item.institution}</p>}{item.description && <p class="timeline-description">{item.description}</p>}{item.url && <a class="text-link education-link" href={item.url} target="_blank" rel="noopener noreferrer">{item.urlTitle?.trim() || item.institution || 'View related page'} <span aria-hidden="true">↗</span></a>}</div>
 </article>)}</div> : <p class="empty-message">Education will appear here when added.</p>}

@@ -77,7 +77,7 @@ In Pages CMS → Profile, use the optional IEEE Xplore URL field, or add entries
 
 ## Homepage, achievement galleries and certificate images
 
-The homepage shows About, Education & academics, Research & publications, Projects, then Milestones. Education is shared with the About page and managed in Experience, education & skills → Education. Explore my work opens Research. Download CV uses the PDF saved in Profile → CV and is hidden if no CV is uploaded. The About page lists education, experience and skills; the About me text remains on the homepage.
+The homepage shows About, Research & publications, Projects, then Milestones and the selected Gallery preview. Academic background appears on About and is managed in Experience, education & skills → Education. Explore my work opens Research. Download CV uses the PDF saved in Profile → CV and is hidden if no CV is uploaded. The About page lists education, experience and skills; the About me text remains on the homepage.
 
 For multiple achievement photos, open Pages CMS → Achievements & awards → an entry → Gallery photos. Add photos with optional captions. All photos are displayed directly on the Recognition page, alongside the existing cover image. A cover already included in the gallery is shown only once. Gallery photos also appear on the achievement detail page and open at full size when clicked.
 
@@ -92,3 +92,5 @@ For award photos, select **Show in homepage gallery** on each photo (or **Show c
 Local gallery photos get 320px/640px WebP thumbnails automatically before `npm run dev` and `npm run build`. Gallery cards and award galleries use these shared thumbnails and lazy loading. Clicking a photo opens the original. Generated files are ignored by Git; original uploads remain untouched. Remote or unsupported images use their original URL. Run `npm run thumbnails` and restart the dev server after adding photos locally.
 
 Experience links use **Related URL** as the destination and **Link title** as the clickable text. Without a custom title, the organization name or “View related page” is used. Certificates appear before awards on Recognition.
+
+Education entries support optional **Related URL** and **Link title** fields, just like experience. The link uses the custom title or the institution name and stays hidden when no URL is supplied. Academic background is listed on About; the homepage does not repeat the education timeline.

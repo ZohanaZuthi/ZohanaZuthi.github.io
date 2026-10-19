@@ -87,6 +87,8 @@ content:
           - { name: institution, label: Institution, type: string }
           - { name: period, label: Dates, type: string }
           - { name: description, label: Description, type: text }
+          - { name: url, label: Related URL, type: string, description: "Optional. Add an institution, degree or reference website." }
+          - { name: urlTitle, label: Link title, type: string, description: "Optional. The clickable title. Uses the institution name when empty; the URL itself is not displayed." }
       - name: skills
         label: Skills
         type: object

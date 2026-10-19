@@ -242,7 +242,7 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 
 /* Preserve the way career descriptions are entered in the CMS. */
 .timeline-item p.timeline-description { white-space: pre-wrap; text-align: start; text-align-last: start; }
-.experience-link { margin-top: 12px; }
+.experience-link, .education-link { margin-top: 12px; }
 .achievement-gallery.achievement-gallery-inline { margin: 20px 0; }
 
 /* Keep publication text aligned and certificate scans fully visible. */
