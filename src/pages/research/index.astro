@@ -6,6 +6,6 @@ const entries = await published('research');
 ---
 
 <Base title="Research" description="Research, publications, and ideas.">
-  <section class="page-intro"><p class="eyebrow">Questions & findings / {entries.length} entries</p><h1>Research<span class="accent-dot">.</span></h1><p>Publications, working papers, and studies from questions worth exploring.</p></section>
+  <section class="page-intro"><p class="eyebrow">Research &amp; publications / {entries.length} entries</p><h1>Research<span class="accent-dot">.</span></h1><p>Publications, working papers, and studies from questions worth exploring.</p></section>
   {entries.length ? <div class="card-grid listing-grid">{entries.map(entry => <EntryCard entry={entry} />)}</div> : <p class="empty-message">Research will appear here when published.</p>}
 </Base>

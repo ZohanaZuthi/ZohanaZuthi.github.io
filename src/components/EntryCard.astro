@@ -16,7 +16,7 @@ const image = entry.collection === 'research'
   : projectImage(entry.data);
 ---
 
-<article class="entry-card">
+<article class:list={['entry-card', { 'research-card': entry.collection === 'research' }]}>
   <a class="entry-card-image" href={href} aria-label={`Read ${entry.data.title}`}>
     <img src={image} alt="" loading="lazy" />
   </a>

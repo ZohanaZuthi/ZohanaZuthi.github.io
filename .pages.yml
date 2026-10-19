@@ -176,6 +176,18 @@ content:
         label: Image
         type: image
         options: { media: images }
+      - name: gallery
+        label: Gallery photos
+        type: object
+        list: true
+        description: Optional. Add multiple photos for this award or achievement. Existing cover images remain unchanged.
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+            options: { media: images }
+          - { name: caption, label: Caption, type: string }
       - { name: link, label: More information URL, type: string }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Details, type: rich-text }

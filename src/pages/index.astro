@@ -26,8 +26,8 @@ const selected = (featured.length ? featured : projects).slice(0, 3);
       <EducationSummary hero />
       <p class="hero-intro">{profile.intro}</p>
       <div class="hero-actions">
-        <a class="button button-primary" href="/projects/">Explore my work <span aria-hidden="true">↗</span></a>
-        <a class="button button-quiet" href="/about/">More about me <span aria-hidden="true">→</span></a>
+        <a class="button button-primary" href="/research/">Explore my work <span aria-hidden="true">↗</span></a>
+        {profile.cv && <a class="button button-quiet" href={profile.cv} download>Download CV <span aria-hidden="true">↓</span></a>}
       </div>
       <p class="hero-location">{profile.location || site.tagline}</p>
       <SocialLinks variant="hero" />
@@ -39,14 +39,14 @@ const selected = (featured.length ? featured : projects).slice(0, 3);
     <div class="section-copy"><p>{profile.about}</p><a class="text-link" href="/about/">Experience, education & skills <span aria-hidden="true">↗</span></a></div>
   </section>
 
-  <section class="section" aria-labelledby="work-heading">
-    <div class="section-top"><div><p class="eyebrow">02 / Selected work</p><h2 id="work-heading">Featured projects</h2></div><a class="text-link" href="/projects/">All {projects.length} projects <span aria-hidden="true">↗</span></a></div>
-    {selected.length ? <div class="card-grid home-card-grid">{selected.map(entry => <EntryCard entry={entry} />)}</div> : <p class="empty-message">Projects will appear here when published.</p>}
+  <section class="section" aria-labelledby="research-heading">
+    <div class="section-top"><div><p class="eyebrow">02 / Research</p><h2 id="research-heading">Research &amp; publications</h2></div><a class="text-link" href="/research/">All {research.length} entries <span aria-hidden="true">↗</span></a></div>
+    {research.length ? <div class="home-research-list">{research.slice(0, 3).map(entry => <a class="home-research-item" href={`/research/${entry.id}/`}><span class="entry-meta">{entry.data.venue || 'Research'} · {dateLabel(entry.data.date)}</span><strong>{entry.data.title}</strong><span aria-hidden="true">↗</span></a>)}</div> : <p class="empty-message">Research will appear here when published.</p>}
   </section>
 
-  <section class="section" aria-labelledby="research-heading">
-    <div class="section-top"><div><p class="eyebrow">03 / Research</p><h2 id="research-heading">Research &amp; publications</h2></div><a class="text-link" href="/research/">All {research.length} entries <span aria-hidden="true">↗</span></a></div>
-    {research.length ? <div class="home-research-list">{research.slice(0, 3).map(entry => <a class="home-research-item" href={`/research/${entry.id}/`}><span class="entry-meta">{entry.data.venue || 'Research'} · {dateLabel(entry.data.date)}</span><strong>{entry.data.title}</strong><span aria-hidden="true">↗</span></a>)}</div> : <p class="empty-message">Research will appear here when published.</p>}
+  <section class="section" aria-labelledby="work-heading">
+    <div class="section-top"><div><p class="eyebrow">03 / Selected work</p><h2 id="work-heading">Featured projects</h2></div><a class="text-link" href="/projects/">All {projects.length} projects <span aria-hidden="true">↗</span></a></div>
+    {selected.length ? <div class="card-grid home-card-grid">{selected.map(entry => <EntryCard entry={entry} />)}</div> : <p class="empty-message">Projects will appear here when published.</p>}
   </section>
 
   <section class="section" aria-labelledby="recognition-heading">

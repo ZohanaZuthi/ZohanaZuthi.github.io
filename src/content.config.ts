@@ -46,6 +46,7 @@ const achievements = defineCollection({
   schema: z.object({
     ...common,
     organization: z.string().optional(),
+    gallery: z.array(z.object({ image: z.string().min(1), caption: z.string().optional() })).default([]),
     link: z.string().optional(),
   }),
 });

@@ -166,8 +166,6 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 .recognition-image { width: 120px; height: 75px; object-fit: cover; border-radius: 4px; margin: 0 0 18px; }
 .certificate-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .certificate-card { background: var(--surface); border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
-.certificate-card>img, .certificate-placeholder { width: 100%; height: 180px; object-fit: cover; }
-.certificate-placeholder { display: grid; place-items: center; background: #e5efed; color: #a66c20; font-size: 3rem; }
 .certificate-body { padding: 22px; }
 .certificate-body .entry-meta { display: block; margin: 0 0 12px; }
 .certificate-body .text-link { margin-top: 6px; }
@@ -233,6 +231,31 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 .hero-intro, .section-copy p, .page-intro>p:last-child { white-space: pre-line; }
 .prose, .entry-card-body, .certificate-body, .timeline-item { overflow-wrap: anywhere; }
 
+/* Keep publication text aligned and certificate scans fully visible. */
+.research-card { display: flex; flex-direction: column; }
+.research-card .entry-card-body { flex: 1; display: flex; flex-direction: column; }
+.research-card .text-link { align-self: flex-start; margin-top: auto; }
+.research-card p, .research-detail .detail-summary, .research-detail .prose :is(p, li) { text-align: justify; text-align-last: start; hyphens: auto; line-height: 1.8; overflow-wrap: break-word; }
+.research-card .entry-meta { align-items: flex-start; }
+.research-card .entry-meta span:last-child { flex-shrink: 0; }
+.home-research-item strong { min-width: 0; overflow-wrap: anywhere; line-height: 1.4; }
+.certificate-frame { width: 100%; padding: clamp(8px, 1.5vw, 18px); border: 6px double #a99a78; background: #edf0f2; }
+.certificate-paper { display: grid; width: 100%; aspect-ratio: 1.414 / 1; padding: 8px; background: #fff; box-shadow: 0 2px 8px #14263d1a; }
+.certificate-paper img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.certificate-empty { align-content: center; justify-items: center; gap: 12px; text-align: center; color: #475569; border: 1px solid #e2e8f0; }
+.certificate-empty .link-icon { width: 32px; height: 32px; }
+.certificate-empty>span { font-size: .6875rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.certificate-empty strong { font-size: 1rem; max-width: 90%; overflow-wrap: anywhere; }
+.certificate-empty small { font-size: .6875rem; color: #64748b; }
+.detail-page>.certificate-frame { max-width: 960px; margin-bottom: 40px; }
+.achievement-gallery { margin: 40px 0; }
+.achievement-gallery h2 { font-size: 1.6rem; margin: 0 0 24px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.gallery-grid figure { margin: 0; min-width: 0; }
+.gallery-grid a { display: block; background: var(--soft); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.gallery-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
+.gallery-grid figcaption { color: var(--secondary); font-size: .8125rem; line-height: 1.6; margin-top: 10px; overflow-wrap: anywhere; }
+
 @media (max-width: 1050px) {
   .site-shell { padding: var(--navbar-height) 28px 0; }
   .topbar { left: 28px; right: 28px; }
@@ -245,6 +268,8 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
 
 @media (max-width: 760px) {
   :root { --navbar-height: 132px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .research-card p, .research-detail .detail-summary, .research-detail .prose :is(p, li) { text-align: start; hyphens: manual; }
   html { scroll-padding-top: 160px; }
   .site-shell { padding: var(--navbar-height) 20px 0; }
   .topbar { left: 20px; right: 20px; min-height: var(--navbar-height); flex-wrap: wrap; justify-content: space-between; gap: 0; padding: 15px 0; }

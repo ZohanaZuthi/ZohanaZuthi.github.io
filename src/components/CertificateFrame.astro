@@ -1,0 +1,9 @@
+---
+import Icon from './Icon.astro';
+interface Props { image?: string; title: string; }
+const { image, title } = Astro.props;
+---
+
+<div class="certificate-frame">
+  {image ? <a class="certificate-paper" href={image} target="_blank" rel="noopener noreferrer" aria-label={`Open certificate: ${title}`}><img src={image} alt={`${title} certificate`} loading="lazy" /></a> : <div class="certificate-paper certificate-empty"><Icon name="graduation" /><span>Certificate</span><strong>{title}</strong><small>Preview not provided</small></div>}
+</div>

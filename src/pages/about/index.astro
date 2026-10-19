@@ -5,16 +5,16 @@ import career from '../../lib/career';
 ---
 
 <Base title="About" description={`About ${profile.name}: ${profile.role}`}>
-  <section class="page-intro"><p class="eyebrow">Professional background</p><h1>About me<span class="accent-dot">.</span></h1><p>{profile.about}</p></section>
-
-  <section class="recognition-section" aria-labelledby="experience-heading">
-    <div class="section-top"><div><p class="eyebrow">01 / Journey</p><h2 id="experience-heading">Experience</h2></div></div>
-    {career.experience.length ? <div class="timeline-list">{career.experience.map(item => <article class="timeline-item"><span class="timeline-period">{item.period}</span><div><h3>{item.role}</h3><p class="item-source">{item.organization}</p><p>{item.description}</p></div></article>)}</div> : <p class="empty-message">Experience will appear here when added.</p>}
-  </section>
+  <section class="page-intro"><p class="eyebrow">Academic &amp; professional background</p><h1>Background<span class="accent-dot">.</span></h1></section>
 
   <section class="recognition-section" aria-labelledby="education-heading">
-    <div class="section-top"><div><p class="eyebrow">02 / Learning</p><h2 id="education-heading">Education</h2></div></div>
+    <div class="section-top"><div><p class="eyebrow">01 / Learning</p><h2 id="education-heading">Academic education</h2></div></div>
     {career.education.length ? <div class="timeline-list">{career.education.map(item => <article class="timeline-item"><span class="timeline-period">{item.period}</span><div><h3>{item.qualification}</h3><p class="item-source">{item.institution}</p><p>{item.description}</p></div></article>)}</div> : <p class="empty-message">Education will appear here when added.</p>}
+  </section>
+
+  <section class="recognition-section" aria-labelledby="experience-heading">
+    <div class="section-top"><div><p class="eyebrow">02 / Journey</p><h2 id="experience-heading">Experience</h2></div></div>
+    {career.experience.length ? <div class="timeline-list">{career.experience.map(item => <article class="timeline-item"><span class="timeline-period">{item.period}</span><div><h3>{item.role}</h3><p class="item-source">{item.organization}</p><p>{item.description}</p></div></article>)}</div> : <p class="empty-message">Experience will appear here when added.</p>}
   </section>
 
   <section class="recognition-section about-last" aria-labelledby="skills-heading">

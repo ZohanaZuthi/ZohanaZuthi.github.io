@@ -74,3 +74,11 @@ Applying a new template ZIP over the whole repository can overwrite content. A t
 ## Adding more profile links
 
 In Pages CMS → Profile, use the optional IEEE Xplore URL field, or add entries under **Additional links**. Paste your full profile URL; the platform name and icon are detected automatically for supported sites. The optional **Nickname** field overrides the displayed name, for example “My IEEE profile”. Other websites use a globe icon. Empty entries are hidden, and duplicate URLs appear once. Links are shared across the homepage, sidebar, and footer. Existing profile links do not need to be re-entered.
+
+## Homepage, achievement galleries and certificate images
+
+The homepage shows About, Research & publications, Projects, then Milestones. Explore my work opens Research. Download CV uses the PDF saved in Profile → CV and is hidden if no CV is uploaded. The About page lists education, experience and skills; the About me text remains on the homepage.
+
+For multiple achievement photos, open Pages CMS → Achievements & awards → an entry → Gallery photos. Add photos with optional captions. The existing Image field remains the cover; when no cover is set, the first gallery photo is used in the recognition listing. Gallery photos open at full size when clicked.
+
+Certificate images use a landscape A4-style frame on the recognition listing and certificate detail pages. The full image is contained within the frame; portrait scans are supported without cropping. Existing image and PDF fields remain compatible.
