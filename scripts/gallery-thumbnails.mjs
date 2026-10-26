@@ -1,22 +1,15 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
 import sharp from 'sharp';
-import { parse } from 'yaml';
+import { readEntries } from './content-files.mjs';
 
 const output = 'public/gallery-previews';
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 const sources = new Set();
 for (const collection of ['achievements', 'projects', 'certificates', 'gallery']) {
-  const directory = `src/content/${collection}`;
-  let files = [];
-  try { files = await readdir(directory, { recursive: true }); } catch { continue; }
-  for (const file of files.filter(name => name.endsWith('.md'))) {
-    const text = await readFile(`${directory}/${file}`, 'utf8');
-    const header = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-    if (!header) continue;
-    const entry = parse(header[1]);
+  for (const entry of await readEntries(collection)) {
     if (entry?.published !== true) continue;
     if (entry.image) sources.add(entry.image);
     for (const photo of entry.gallery || []) if (photo.image) sources.add(photo.image);

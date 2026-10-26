@@ -3,73 +3,17 @@ media:
     label: Images
     input: public/uploads/images
     output: /uploads/images
-    extensions: [jpg, jpeg, png, webp, svg]
+    extensions: [ jpg, jpeg, png, webp, svg ]
     rename: safe
   - name: documents
     label: Documents
     input: public/uploads/documents
     output: /uploads/documents
-    extensions: [pdf]
+    extensions: [ pdf ]
     rename: safe
 
 content:
-  - name: entryOrder
-    label: Arrange entries
-    type: file
-    path: src/settings/entry-order.json
-    format: json
-    fields:
-      - name: projects
-        label: Projects
-        type: reference
-        list: true
-        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
-        options:
-          collection: projects
-          value: "{path}"
-          label: "{title}"
-          search: "title"
-      - name: research
-        label: Research & publications
-        type: reference
-        list: true
-        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
-        options:
-          collection: research
-          value: "{path}"
-          label: "{title}"
-          search: "title"
-      - name: certificates
-        label: Certificates
-        type: reference
-        list: true
-        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
-        options:
-          collection: certificates
-          value: "{path}"
-          label: "{title}"
-          search: "title"
-      - name: achievements
-        label: Achievements & awards
-        type: reference
-        list: true
-        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
-        options:
-          collection: achievements
-          value: "{path}"
-          label: "{title}"
-          search: "title"
-      - name: gallery
-        label: Gallery entries
-        type: reference
-        list: true
-        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
-        options:
-          collection: gallery
-          value: "{path}"
-          label: "{title}"
-          search: "title"
-
+  
   - name: profile
     label: Profile
     type: file
@@ -91,7 +35,7 @@ content:
       - name: cv
         label: CV (PDF)
         type: file
-        options: { media: documents, extensions: [pdf] }
+        options: { media: documents, extensions: [ pdf ] }
       - { name: linkedin, label: LinkedIn URL, type: string }
       - { name: github, label: GitHub URL, type: string }
       - { name: scholar, label: Google Scholar URL, type: string }
@@ -164,11 +108,11 @@ content:
 
   - name: projects
     label: Projects
-    type: collection
-    path: src/content/projects
-    format: yaml-frontmatter
-    filename: "{primary}.md"
+    type: file
+    path: src/lists/projects.json
+    format: json
     fields:
+      - { name: id, label: Page address, type: string, description: "Optional for new entries: uses the title when empty. Keep existing addresses unchanged to retain shared links." }
       - { name: title, label: Title, type: string, required: true }
       - { name: summary, label: Short summary, type: text, required: true }
       - { name: date, label: Date, type: date, required: true }
@@ -201,14 +145,15 @@ content:
       - { name: featured, label: Show on homepage, type: boolean }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Full story, type: rich-text }
+    list: true
 
   - name: research
     label: Research & publications
-    type: collection
-    path: src/content/research
-    format: yaml-frontmatter
-    filename: "{primary}.md"
+    type: file
+    path: src/lists/research.json
+    format: json
     fields:
+      - { name: id, label: Page address, type: string, description: "Optional for new entries: uses the title when empty. Keep existing addresses unchanged to retain shared links." }
       - { name: title, label: Title, type: string, required: true }
       - { name: summary, label: Short summary, type: text, required: true }
       - { name: date, label: Date, type: date, required: true }
@@ -221,17 +166,18 @@ content:
       - name: pdf
         label: Paper PDF
         type: file
-        options: { media: documents, extensions: [pdf] }
+        options: { media: documents, extensions: [ pdf ] }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Abstract or details, type: rich-text }
+    list: true
 
   - name: certificates
     label: Certificates
-    type: collection
-    path: src/content/certificates
-    format: yaml-frontmatter
-    filename: "{primary}.md"
+    type: file
+    path: src/lists/certificates.json
+    format: json
     fields:
+      - { name: id, label: Page address, type: string, description: "Optional for new entries: uses the title when empty. Keep existing addresses unchanged to retain shared links." }
       - { name: title, label: Title, type: string, required: true }
       - { name: summary, label: Short summary, type: text, required: true }
       - { name: date, label: Issue date, type: date, required: true }
@@ -246,17 +192,18 @@ content:
       - name: pdf
         label: Certificate PDF
         type: file
-        options: { media: documents, extensions: [pdf] }
+        options: { media: documents, extensions: [ pdf ] }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Details, type: rich-text }
+    list: true
 
   - name: achievements
     label: Achievements & awards
-    type: collection
-    path: src/content/achievements
-    format: yaml-frontmatter
-    filename: "{primary}.md"
+    type: file
+    path: src/lists/achievements.json
+    format: json
     fields:
+      - { name: id, label: Page address, type: string, description: "Optional for new entries: uses the title when empty. Keep existing addresses unchanged to retain shared links." }
       - { name: title, label: Title, type: string, required: true }
       - { name: summary, label: Short summary, type: text, required: true }
       - { name: date, label: Date, type: date, required: true }
@@ -286,14 +233,15 @@ content:
       - { name: link, label: More information URL, type: string }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Details, type: rich-text }
+    list: true
 
   - name: gallery
     label: Gallery
-    type: collection
-    path: src/content/gallery
-    format: yaml-frontmatter
-    filename: "{primary}.md"
+    type: file
+    path: src/lists/gallery.json
+    format: json
     fields:
+      - { name: id, label: Page address, type: string, description: "Optional for new entries: uses the title when empty. Keep existing addresses unchanged to retain shared links." }
       - { name: title, label: Title, type: string, required: true }
       - { name: summary, label: Caption or short description, type: text, required: true }
       - { name: date, label: Date, type: date, required: true }
@@ -306,3 +254,4 @@ content:
       - { name: link, label: Related URL, type: string }
       - { name: featured, label: Feature on homepage, type: boolean, description: "Published gallery entries appear in Gallery. This option additionally selects the homepage preview." }
       - { name: published, label: Published, type: boolean }
+    list: true

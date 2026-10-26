@@ -24,10 +24,10 @@ npm run preview
 - `src/data/profile.json`: name, introduction, contact links, photo, and CV.
 - `src/data/site.json`: tagline and search description.
 - `src/data/career.json`: repeatable experience, education, and skill groups for the About page.
-- `src/content/projects/`: one Markdown file per project.
-- `src/content/research/`: one Markdown file per publication or research entry.
-- `src/content/certificates/`: one Markdown file per certificate.
-- `src/content/achievements/`: one Markdown file per award or achievement.
+- `src/lists/projects.json`: one Markdown file per project.
+- `src/lists/research.json`: one Markdown file per publication or research entry.
+- `src/lists/certificates.json`: one Markdown file per certificate.
+- `src/lists/achievements.json`: one Markdown file per award or achievement.
 - `public/uploads/`: images and PDFs. Use paths such as `/uploads/images/photo.webp` in content.
 
 Example entries are clearly marked. Replace or delete them before publishing.
@@ -103,14 +103,14 @@ Only selected award/project photos and certificate covers are reused in Gallery.
 
 Gallery is available in the header on every page. Captions use consistent image proportions and left alignment. Education retains Related URL and Link title and also supports an optional Additional URLs list with URL and Label text fields. Existing education data is preserved.
 
-## Manual ordering and the three-photo homepage gallery
+## Add, edit and drag entries in the same editor
 
-Use **Arrange entries** to drag projects, research entries, certificates, awards and standalone Gallery entries into order. Previously saved numeric order values remain a fallback for unlisted entries. Certificates still come before awards on Recognition.
+Open Projects, Research & publications, Certificates, Achievements & awards or Gallery in Pages CMS. Each section is now one editable list, like Experience and Education. Add an item, fill its fields, drag its grip to arrange it, and Save. The website follows the saved list order regardless of dates. There is no separate Arrange entries screen. Published controls visibility; removing an item removes it from the website after deployment.
 
-**Show in gallery** selects a photo for the full Gallery only. Use **Feature on homepage** on an award/project photo, **Feature cover on homepage** on a cover/certificate, or **Feature on homepage** on a standalone Gallery entry to select the homepage row. Select your preferred three; if more are selected, the three with the lowest display order appear. Photo display order overrides its entry order. The homepage shows at most three photos, with responsive stacking on small screens. No photos are selected automatically.
+Existing page addresses and all metadata, Markdown details, photo captions and upload paths are retained. For a new entry, Page address is optional and defaults to its title; enter a unique stable address if you want its URL to remain the same after renaming it. Existing addresses should be left unchanged.
 
-## Drag entries into order
+Active content lives in `src/lists/projects.json`, `research.json`, `certificates.json`, `achievements.json` and `gallery.json`. Old `src/content/` Markdown files are preserved as backups and are not read once the corresponding list exists. An empty list stays empty, so deleted examples do not reappear. Old `src/settings/entry-order.json` is no longer used.
 
-Open **Pages CMS → Arrange entries**. Each collection has a list of references to existing entries, displayed by title. Drag the grip on the left to change their order, then **Save**. Add new entries to the list by selecting their title. Removing a reference only removes its ordering preference; it does not delete or hide the entry. Published entries not listed appear afterward, using the previous order/date fallback. Existing entries and uploads are unchanged. Certificates and awards keep their separate sections.
+`npm run migrate` creates only missing lists from the repository's own Markdown files, preserving the previous order. It also runs before check, development and build. It never overwrites an existing list or deletes original files. For updates to client repositories, preserve `src/lists/` exactly like `src/data/` and `public/uploads/`; never copy template example lists onto client content. Generate a client's initial lists from their own checkout after pulling their latest CMS changes.
 
-Education, experience and photo lists also follow their saved list order and can be dragged within their editor.
+The homepage Gallery remains limited to three selected photos. Use Feature on homepage or Feature cover on homepage to select them. Gallery photo priorities remain compatible with previous values.

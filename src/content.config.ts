@@ -1,5 +1,5 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { portfolioList } from './loaders/portfolio-list';
 import { z } from 'astro/zod';
 
 const common = {
@@ -9,6 +9,7 @@ const common = {
   order: z.number().nonnegative().nullish(),
   image: z.string().optional(),
   published: z.boolean().default(false),
+  listPosition: z.number(),
 };
 
 const photoGallery = z.array(z.object({
@@ -19,7 +20,7 @@ const photoGallery = z.array(z.object({
 })).default([]);
 
 const projects = defineCollection({
-  loader: glob({ base: './src/content/projects', pattern: '**/*.md' }),
+  loader: portfolioList('projects'),
   schema: z.object({
     ...common,
     featured: z.boolean().default(false),
@@ -33,7 +34,7 @@ const projects = defineCollection({
 });
 
 const research = defineCollection({
-  loader: glob({ base: './src/content/research', pattern: '**/*.md' }),
+  loader: portfolioList('research'),
   schema: z.object({
     ...common,
     venue: z.string().optional(),
@@ -43,7 +44,7 @@ const research = defineCollection({
 });
 
 const certificates = defineCollection({
-  loader: glob({ base: './src/content/certificates', pattern: '**/*.md' }),
+  loader: portfolioList('certificates'),
   schema: z.object({
     ...common,
     issuer: z.string().optional(),
@@ -55,7 +56,7 @@ const certificates = defineCollection({
 });
 
 const achievements = defineCollection({
-  loader: glob({ base: './src/content/achievements', pattern: '**/*.md' }),
+  loader: portfolioList('achievements'),
   schema: z.object({
     ...common,
     organization: z.string().optional(),
@@ -67,7 +68,7 @@ const achievements = defineCollection({
 });
 
 const gallery = defineCollection({
-  loader: glob({ base: './src/content', pattern: 'gallery/**/*.md' }),
+  loader: portfolioList('gallery'),
   schema: z.object({
     ...common,
     image: z.string().min(1),

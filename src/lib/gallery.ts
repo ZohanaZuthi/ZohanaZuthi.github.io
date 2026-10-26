@@ -1,4 +1,4 @@
-import { published, compareDisplayOrder, entryPosition } from './content';
+import { published, compareDisplayOrder } from './content';
 import { socialLink } from './social-link';
 
 export interface GalleryItem {
@@ -20,7 +20,7 @@ export async function galleryItems(): Promise<GalleryItem[]> {
     published('achievements'), published('projects'), published('certificates'), published('gallery'),
   ]);
   const items: GalleryItem[] = entries.map(entry => ({
-    ...entry.data, position: entryPosition('gallery', entry), relatedHref: socialLink(entry.data.link)?.href, relatedLabel: 'More information',
+    ...entry.data, position: entry.data.listPosition, relatedHref: socialLink(entry.data.link)?.href, relatedLabel: 'More information',
   }));
   for (const entry of [...awards, ...projects]) {
     const { id, data } = entry;

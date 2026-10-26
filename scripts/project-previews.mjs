@@ -1,20 +1,14 @@
-import { mkdir, readdir, readFile, rm } from 'node:fs/promises';
+import { mkdir, rm } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { parse } from 'yaml';
+import { readEntries } from './content-files.mjs';
 import { projectPreviewPath } from '../src/lib/project-image.js';
 
 // Generated previews are rebuilt each time; uploaded cover images are never changed.
 await rm('public/project-previews', { recursive: true, force: true });
 await mkdir('public/project-previews', { recursive: true });
 
-const directory = 'src/content/projects';
-const files = await readdir(directory, { recursive: true });
 const urls = new Set();
-for (const file of files.filter(file => file.endsWith('.md'))) {
-  const text = await readFile(`${directory}/${file}`, 'utf8');
-  const frontmatter = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!frontmatter) continue;
-  const project = parse(frontmatter[1]);
+for (const project of await readEntries('projects')) {
   if (project.published !== true || project.image?.trim() || !project.link?.trim()) continue;
   try {
     const url = new URL(project.link.trim());
