@@ -1,30 +1,36 @@
 [
   {
+    "id": "njnfkjenggggggggggggggrg",
     "title": "njnfkjenggggggggggggggrg",
     "summary": "jhhgiuuuuuuuuuuuuehhhegeihwwwww",
     "date": "2026-10-16",
     "image": "/uploads/images/screenshot-from-2026-10-16-18-48-20-1.png",
+    "featureCover": false,
+    "homepageCover": false,
     "link": "https://ieeexplore.ieee.org/document/11545833",
     "published": true,
-    "id": "njnfkjenggggggggggggggrg",
     "body": "ngniegieghih"
   },
   {
+    "id": "example-certificate",
     "title": "Example: Professional certificate",
     "summary": "Describe the subject of the course or credential.",
     "date": "2025-03-01",
     "issuer": "Issuing organization",
+    "featureCover": true,
+    "homepageCover": false,
     "published": true,
-    "id": "example-certificate",
-    "body": "\nThis is sample content. Replace it with your certificate and upload its image or PDF.\n"
+    "body": "This is sample content. Replace it with your certificate and upload its image or PDF."
   },
   {
+    "id": "example-training",
     "title": "Example: Specialist training",
     "summary": "Explain the practical skills or knowledge gained through this training.",
     "date": "2024-09-01",
     "issuer": "Training provider",
+    "featureCover": false,
+    "homepageCover": false,
     "published": true,
-    "id": "example-training",
-    "body": "\nThis is sample content. Replace it with your credential and upload a certificate image or PDF if available.\n"
+    "body": "This is sample content. Replace it with your credential and upload a certificate image or PDF if available."
   }
 ]
