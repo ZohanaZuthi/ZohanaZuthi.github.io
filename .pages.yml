@@ -13,7 +13,7 @@ media:
     rename: safe
 
 content:
-  
+
   - name: profile
     label: Profile
     type: file
