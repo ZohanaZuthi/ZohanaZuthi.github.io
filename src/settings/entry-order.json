@@ -3,8 +3,8 @@
     "src/content/projects/ain-bondhu.md"
   ],
   "research": [
-    "src/content/research/fiuhiheoigoiheiughiuehgiurh.md",
-    "src/content/research/lkngknkengkjejgb.md"
+    "src/content/research/lkngknkengkjejgb.md",
+    "src/content/research/fiuhiheoigoiheiughiuehgiurh.md"
   ],
   "certificates": [
     "src/content/certificates/njnfkjenggggggggggggggrg.md",
@@ -14,6 +14,5 @@
   "achievements": [
     "src/content/achievements/example-award.md",
     "src/content/achievements/example-fellowship.md"
-  ],
-  "gallery": []
+  ]
 }
