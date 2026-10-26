@@ -1,5 +1,6 @@
 ---
 import profile from '../lib/profile';
+import AnalyticsTag from '../components/AnalyticsTag.astro';
 import site from '../data/site.json';
 import ProfilePortrait from '../components/ProfilePortrait.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
@@ -13,9 +14,10 @@ interface Props {
   title?: string;
   description?: string;
   home?: boolean;
+  privatePage?: boolean;
 }
 
-const { title, description = site.description, home = false } = Astro.props;
+const { title, description = site.description, home = false, privatePage = false } = Astro.props;
 const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} · ${profile.role}`;
 const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).slice(0, 2).join('').toUpperCase();
 ---
@@ -38,6 +40,7 @@ const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).sl
     </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{pageTitle}</title>
+    {privatePage ? <meta name="robots" content="noindex, nofollow" /> : <AnalyticsTag />}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

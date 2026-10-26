@@ -130,3 +130,23 @@ Pages CMS → Projects → Project photos accepts multiple images with optional 
 Gallery integration applies only to awards/achievements and certificates. Projects retain their inline three-column photo galleries and optional descriptions, without Gallery or homepage-photo selection controls. The project card’s separate Show on homepage option still controls the Featured projects section.
 
 Descriptions and image captions in Projects, Gallery, Certificates and Achievements use justified paragraphs on desktop, with the final line left-aligned. Narrow screens use left alignment for readability. Gallery and certificate cards share text rows so metadata, titles, summaries and links line up without clipping text.
+
+### Private Analytics dashboard
+
+Open `/analytics/` to see your portfolio's users, sessions, page views and users by country for the last 7, 30 or 90 days. It is not linked from the public navigation and asks search engines not to index it. The static page itself is public; Google protects the report and only returns it to an account with access to the configured Analytics property. Use a client-owned property with no other viewers if only the owner should see the reports. A hidden URL is not authentication.
+
+One-time setup for each client:
+
+1. In [Google Analytics](https://analytics.google.com/), create a GA4 property and a Web data stream for the client's portfolio URL. Copy its `G-...` measurement ID. In Admin → Property details, copy the separate numeric property ID.
+2. In a client-owned [Google Cloud project](https://console.cloud.google.com/), enable **Google Analytics Data API** (`analyticsdata.googleapis.com`). Configure Google Auth Platform branding, audience and data access, requesting only `https://www.googleapis.com/auth/analytics.readonly`. For a personal test deployment, add the owner's Google account as a test user; testing authorizations expire after seven days and require reconnecting. Google may show an unverified-app notice for a personal app. A broadly distributed app may need OAuth verification; do not share one test OAuth app across unrelated clients.
+3. Create an OAuth client of type **Web application**. Add the exact portfolio origin to **Authorized JavaScript origins**, e.g. `https://adib-hassan-1.github.io` (no path). For local development add the exact local origin you use, e.g. `http://localhost:4321`. Copy the client ID ending in `.apps.googleusercontent.com`. No client secret or service-account key belongs in this repository.
+4. In Pages CMS → **Site settings**, enter the measurement ID, numeric property ID and OAuth client ID into their optional Analytics fields. Save, then wait for GitHub Pages deployment. Leaving the measurement ID blank disables tracking; leaving either dashboard ID blank shows setup instructions instead of a sign-in button that cannot work. These IDs are public configuration, not passwords.
+5. Visit public portfolio pages to generate visits, then open `/analytics/` and click **Connect Google Analytics**. Select the Google account with Viewer or higher access to that property and grant read-only Analytics access. A Google login alone does not grant property access. Check tracking first in Google Analytics Realtime; the dashboard uses processed reports, which can lag and will not recover visits from before tracking was installed.
+
+The dashboard calls Google's Data API directly from the owner's browser. It never uploads reports or tokens to GitHub, Pages CMS or a developer backend. Tokens live only in page memory, expire, and are cleared on leaving/reloading; Disconnect clears the report and revokes this app's Google access. Public page tracking deliberately excludes `/analytics/`. Country counts are aggregate estimates, not names, email addresses or a list of identifiable visitors. Overall users are requested separately rather than summed across countries, since a user can appear in more than one country. No data is fabricated when setup, access or reporting fails.
+
+Google Analytics visitor collection and this owner's report connection are separate: enabling the measurement ID adds Google's visitor tracking script to public pages. Before enabling it, configure the site's visitor notice and consent handling as appropriate for its audience. No tracking is enabled by default in the template.
+
+Reference: [Google browser authorization](https://developers.google.com/identity/oauth2/web/guides/use-token-model), [Data API reporting](https://developers.google.com/analytics/devguides/reporting/data/v1/basics).
+
+Validate the dashboard's report and connection behavior with `node --test tests/analytics.test.mjs`, then `npm run check` and `npm run build`. A live owner sign-in still requires the real Google configuration above.

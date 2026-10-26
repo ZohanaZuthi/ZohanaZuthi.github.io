@@ -61,6 +61,9 @@ content:
     fields:
       - { name: tagline, label: Homepage tagline, type: string, required: true }
       - { name: description, label: Search description, type: text, required: true }
+      - { name: analyticsMeasurementId, label: Google Analytics measurement ID, type: string, description: "Optional. G-XXXXXXXXXX enables visitor tracking. Leave blank to disable it." }
+      - { name: analyticsPropertyId, label: Google Analytics property ID, type: string, description: "Optional. Numeric property ID for your private /analytics/ dashboard. This is different from the G- measurement ID." }
+      - { name: analyticsClientId, label: Google OAuth client ID, type: string, description: "Optional. Web application client ID ending in .apps.googleusercontent.com. Never enter a client secret. See README for one-time setup." }
 
   - name: career
     label: Experience, education & skills
