@@ -1,14 +1,23 @@
 [
   {
+    "id": "ain-bondhu",
     "title": "ain bondhu",
     "summary": "jbhbhubh",
     "date": "2026-10-16",
     "category": "vvhubu",
+    "image": "/uploads/images/47271070911121010536943763539250440293409461n-1.jpg",
+    "featureCover": false,
+    "homepageCover": false,
+    "gallery": [
+      {
+        "image": "/uploads/images/photo2024-10-1417-48-13.jpg",
+        "featured": false,
+        "homepage": false
+      }
+    ],
     "link": "https://ain-bondhu-pi.vercel.app/",
     "source": "https://github.com/thenexgenix/AinBondu-Frontend",
     "featured": true,
-    "published": true,
-    "id": "ain-bondhu",
-    "body": ""
+    "published": true
   }
 ]
