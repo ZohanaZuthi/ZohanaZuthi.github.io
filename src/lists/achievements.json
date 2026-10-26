@@ -1,11 +1,13 @@
 [
   {
+    "id": "example-award",
     "title": "Example: Recognition or award",
     "summary": "Describe what was recognized and why it was meaningful.",
     "date": "2025-06-01",
     "organization": "Awarding organization",
     "image": "/uploads/images/screenshot-from-2026-08-13-12-55-00.png",
     "featureCover": false,
+    "homepageCover": false,
     "gallery": [
       {
         "image": "/uploads/images/screenshot-from-2026-08-12-18-18-09.png",
@@ -20,16 +22,18 @@
       }
     ],
     "published": true,
-    "id": "example-award",
     "body": "This is sample content. Replace it with your achievement."
   },
   {
+    "id": "example-fellowship",
     "title": "Example: Fellowship or selected program",
     "summary": "Share why you were selected and what the opportunity helped you do.",
     "date": "2024-11-01",
     "organization": "Program organizer",
+    "image": "/uploads/images/photo2025-03-2115-53-20.jpg",
+    "featureCover": true,
+    "homepageCover": true,
     "published": true,
-    "id": "example-fellowship",
-    "body": "\nThis is sample content. Replace it with a real milestone.\n"
+    "body": "This is sample content. Replace it with a real milestone."
   }
 ]
