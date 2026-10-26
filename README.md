@@ -87,7 +87,7 @@ Experience descriptions preserve Enter/newline formatting and blank lines. Use t
 
 ## Homepage gallery and named experience links
 
-For award and project photos, select **Show in gallery** on each photo or **Show cover in gallery** on the entry. Certificates have **Show certificate in gallery**. No duplicate uploads or entries are needed. For unrelated photos, add a published entry under **Pages CMS → Gallery**, with a title, caption, date, optional location and related URL. Up to three photos selected with the separate homepage checkbox appear below Milestones; **View full gallery** shows published standalone gallery entries and explicitly selected photos. Reused image paths appear once.
+For award photos, select **Show in gallery** on each photo or **Show cover in gallery** on the entry. Certificates have **Show certificate in gallery**. No duplicate uploads or entries are needed. For unrelated photos, add a published entry under **Pages CMS → Gallery**, with a title, caption, date, optional location and related URL. Up to three photos selected with the separate homepage checkbox appear below Milestones; **View full gallery** shows published standalone gallery entries and explicitly selected photos. Reused image paths appear once.
 
 Local gallery photos get 320px/640px WebP thumbnails automatically before `npm run dev` and `npm run build`. Gallery cards and award galleries use these shared thumbnails and lazy loading. Clicking a photo opens the original. Generated files are ignored by Git; original uploads remain untouched. Remote or unsupported images use their original URL. Run `npm run thumbnails` and restart the dev server after adding photos locally.
 
@@ -99,7 +99,7 @@ Education entries support optional **Related URL** and **Link title** fields, ju
 
 Research listing cards show Read publication and Download PDF when supplied. Project cards show Visit project and View source when supplied. Project photos and captions can be managed under Projects; they appear on the project detail page.
 
-Only selected award/project photos and certificate covers are reused in Gallery. Homepage selections are managed separately as described below. Unchecked photos stay visible on their original entry but are excluded from Gallery. Standalone Gallery entries appear when Published; Feature on homepage additionally selects the preview. Shared images appear once if any published entry selects them; remove every selection (or unpublish any standalone copy) to remove a shared image from Gallery. Thumbnails are generated for projects and certificates too.
+Only selected award photos and certificate covers are reused in Gallery. Homepage selections are managed separately as described below. Unchecked photos stay visible on their original entry but are excluded from Gallery. Standalone Gallery entries appear when Published; Feature on homepage additionally selects the preview. Shared images appear once if any published entry selects them; remove every selection (or unpublish any standalone copy) to remove a shared image from Gallery. Thumbnails are generated for projects and certificates too.
 
 Gallery is available in the header on every page. Captions use consistent image proportions and left alignment. Education retains Related URL and Link title and also supports an optional Additional URLs list with URL and Label text fields. Existing education data is preserved.
 
@@ -117,7 +117,7 @@ The homepage Gallery remains limited to three selected photos. Use Feature on ho
 
 ## Selected photos appear in the Gallery editor
 
-Saving a selected Recognition or Project photo starts deployment. The build adds a shared record to `src/lists/gallery.json` and GitHub Actions saves it back to the repository. After deployment, refresh Pages CMS → Gallery to see, edit and drag those records alongside standalone photos. No image is uploaded again.
+Saving a selected award or certificate photo starts deployment. The build adds a shared record to `src/lists/gallery.json` and GitHub Actions saves it back to the repository. After deployment, refresh Pages CMS → Gallery to see, edit and drag those records alongside standalone photos. No image is uploaded again.
 
 Linked records keep Gallery edits to captions, titles, homepage selection and visibility. Unedited values follow updates to the original entry. Unchecking both Gallery/homepage selections or unpublishing/removing the source removes its linked record; standalone Gallery records stay. To remove a linked record permanently, change its selection in the original entry. Gallery's saved list order controls the full page and the three selected homepage photos. A selected certificate needs an uploaded image.
 
@@ -125,4 +125,6 @@ Linked records keep Gallery edits to captions, titles, homepage selection and vi
 
 ## Project photos on the listing
 
-Pages CMS → Projects → Project photos accepts multiple images with optional captions. All photos appear directly on the Projects listing in three columns on desktop, with two/one columns on smaller screens. A cover already included in the photos appears once. When photos exist without a cover, no extra default image is inserted. Short summary and Full story are optional; empty descriptions are hidden. Gallery/homepage selections remain separate and reuse the same image uploads.
+Pages CMS → Projects → Project photos accepts multiple images with optional captions. All photos appear directly on the Projects listing in three columns on desktop, with two/one columns on smaller screens. A cover already included in the photos appears once. When photos exist without a cover, no extra default image is inserted. Short summary and Full story are optional; empty descriptions are hidden. Main Gallery selections are reserved for awards and certificates; project photos stay in their own entries.
+
+Gallery integration applies only to awards/achievements and certificates. Projects retain their inline three-column photo galleries and optional descriptions, without Gallery or homepage-photo selection controls. The project card’s separate Show on homepage option still controls the Featured projects section.

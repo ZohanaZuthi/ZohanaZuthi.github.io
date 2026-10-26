@@ -122,13 +122,11 @@ content:
         type: image
         description: Optional. Upload a cover, or leave empty to preview the live project URL.
         options: { media: images }
-      - { name: featureCover, label: Show cover in gallery, type: boolean, description: "Select an uploaded cover for the full Gallery." }
-      - { name: homepageCover, label: Feature cover on homepage, type: boolean, description: "Select for the three-photo homepage row. Also includes this image in Gallery. Display order controls priority if more than three are selected." }
       - name: gallery
         label: Project photos
         type: object
         list: true
-        description: "Optional. Add multiple images with captions. All photos appear directly on Projects in rows of three and on the detail page. The Gallery checkbox controls the separate Gallery section."
+        description: "Optional. Add multiple images with captions. All photos appear directly on Projects in rows of three and on the detail page."
         fields:
           - name: image
             label: Photo
@@ -137,9 +135,6 @@ content:
             options: { media: images }
           - { name: caption, label: Caption, type: string }
           - { name: title, label: Photo title, type: string }
-          - { name: featured, label: Show in gallery, type: boolean }
-          - { name: homepage, label: Feature on homepage, type: boolean, description: "Select for the three-photo homepage row. Also includes this photo in Gallery." }
-          - { name: order, label: Photo display order, type: number, description: "Optional. Lower numbers appear first in Gallery and the homepage row; uses the entry display order when empty." }
       - { name: link, label: Live project URL, type: string }
       - { name: source, label: Source code URL, type: string }
       - { name: featured, label: Show on homepage, type: boolean }
@@ -247,7 +242,7 @@ content:
       - { name: relatedLabel, type: string, hidden: true }
       - { name: id, label: Page address, type: string, description: "Optional for new entries: uses the title when empty. Keep existing addresses unchanged to retain shared links." }
       - { name: title, label: Title, type: string, required: true }
-      - { name: summary, label: Caption or short description, type: text, required: true, description: "Photos selected in Recognition or Projects appear here after deployment. You can edit captions and drag records here. To remove a linked record, uncheck its Gallery/homepage options in the original entry." }
+      - { name: summary, label: Caption or short description, type: text, required: true, description: "Photos selected in Awards or Certificates appear here after deployment. You can edit captions and drag records here. To remove a linked record, uncheck its Gallery/homepage options in the original entry." }
       - { name: date, label: Date, type: date, required: true }
       - name: image
         label: Photo

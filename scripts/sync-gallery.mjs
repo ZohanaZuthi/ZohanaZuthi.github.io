@@ -7,9 +7,9 @@ import { readEntries, listPath } from './content-files.mjs';
 // One Gallery record per selected image; the uploaded file is reused.
 export function syncGallery(current, sources) {
   const selected = new Map();
-  for (const [collection, entries] of Object.entries(sources)) {
+  for (const collection of ['achievements', 'certificates']) {
+    const entries = sources[collection] || [];
     for (const entry of entries.filter(entry => entry.published)) {
-      const award = collection === 'achievements';
       const certificate = collection === 'certificates';
       const id = entry.id?.trim() || slug(entry.title);
       const photos = [
@@ -24,10 +24,10 @@ export function syncGallery(current, sources) {
         const item = {
           title: photo.title || entry.title, summary: photo.caption || entry.summary || entry.title,
           date: entry.date, image: photo.image,
-          location: (certificate ? entry.issuer : award ? entry.organization : '') || '',
+          location: (certificate ? entry.issuer : entry.organization) || '',
           featured: Boolean(photo.homepage), published: true,
-          relatedHref: certificate ? `/recognition/certificates/${id}/` : award ? `/recognition/achievements/${id}/` : `/projects/${id}/`,
-          relatedLabel: certificate ? 'Related certificate' : award ? 'Related achievement' : 'Related project',
+          relatedHref: certificate ? `/recognition/certificates/${id}/` : `/recognition/achievements/${id}/`,
+          relatedLabel: certificate ? 'Related certificate' : 'Related achievement',
         };
         const existing = selected.get(photo.image);
         // Prefer a photo's own caption over the cover's default metadata.
@@ -69,7 +69,7 @@ export function syncGallery(current, sources) {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const current = await readEntries('gallery');
   const sources = Object.fromEntries(await Promise.all(
-    ['achievements', 'projects', 'certificates'].map(async name => [name, await readEntries(name)]),
+    ['achievements', 'certificates'].map(async name => [name, await readEntries(name)]),
   ));
   const updated = syncGallery(current, sources);
   if (JSON.stringify(current) !== JSON.stringify(updated)) {
