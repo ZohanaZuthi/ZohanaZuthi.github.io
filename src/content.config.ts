@@ -6,9 +6,17 @@ const common = {
   title: z.string().min(1),
   summary: z.string().min(1),
   date: z.coerce.date(),
+  order: z.number().nonnegative().nullish(),
   image: z.string().optional(),
   published: z.boolean().default(false),
 };
+
+const photoGallery = z.array(z.object({
+  image: z.string().min(1), caption: z.string().optional(), title: z.string().optional(),
+  featured: z.boolean().default(false),
+  homepage: z.boolean().default(false),
+  order: z.number().nonnegative().nullish(),
+})).default([]);
 
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/*.md' }),
@@ -16,6 +24,9 @@ const projects = defineCollection({
     ...common,
     featured: z.boolean().default(false),
     category: z.string().optional(),
+    featureCover: z.boolean().default(false),
+    homepageCover: z.boolean().default(false),
+    gallery: photoGallery,
     link: z.string().optional(),
     source: z.string().optional(),
   }),
@@ -36,6 +47,8 @@ const certificates = defineCollection({
   schema: z.object({
     ...common,
     issuer: z.string().optional(),
+    featureCover: z.boolean().default(false),
+    homepageCover: z.boolean().default(false),
     link: z.string().optional(),
     pdf: z.string().optional(),
   }),
@@ -47,7 +60,8 @@ const achievements = defineCollection({
     ...common,
     organization: z.string().optional(),
     featureCover: z.boolean().default(false),
-    gallery: z.array(z.object({ image: z.string().min(1), caption: z.string().optional(), title: z.string().optional(), featured: z.boolean().default(false) })).default([]),
+    homepageCover: z.boolean().default(false),
+    gallery: photoGallery,
     link: z.string().optional(),
   }),
 });

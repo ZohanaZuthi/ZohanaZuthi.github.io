@@ -1,10 +1,16 @@
 ---
 import career from '../lib/career';
 import { socialLink } from '../lib/social-link';
-const education = career.education.map(item => ({ ...item, url: socialLink(item.url)?.href }));
+const education = career.education.map(item => {
+  const links = [
+    socialLink(item.url, item.urlTitle?.trim() || item.institution || 'View related page'),
+    ...(item.links || []).map(link => socialLink(link.url, link.label || 'View related page')),
+  ].filter((link): link is NonNullable<typeof link> => link !== null);
+  return { ...item, links: links.filter((link, index) => links.findIndex(other => other.href === link.href) === index) };
+});
 ---
 
 {education.length ? <div class="timeline-list">{education.map(item => <article class="timeline-item">
   <span class="timeline-period">{item.period}</span>
-  <div><h3>{item.qualification}</h3>{item.institution && <p class="item-source">{item.institution}</p>}{item.description && <p class="timeline-description">{item.description}</p>}{item.url && <a class="text-link education-link" href={item.url} target="_blank" rel="noopener noreferrer">{item.urlTitle?.trim() || item.institution || 'View related page'} <span aria-hidden="true">↗</span></a>}</div>
+  <div><h3>{item.qualification}</h3>{item.institution && <p class="item-source">{item.institution}</p>}{item.description && <p class="timeline-description">{item.description}</p>}{item.links.length > 0 && <div class="education-links">{item.links.map(link => <a class="text-link education-link" href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}</div>}</div>
 </article>)}</div> : <p class="empty-message">Education will appear here when added.</p>}

@@ -8,7 +8,7 @@ const output = 'public/gallery-previews';
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 const sources = new Set();
-for (const collection of ['achievements', 'gallery']) {
+for (const collection of ['achievements', 'projects', 'certificates', 'gallery']) {
   const directory = `src/content/${collection}`;
   let files = [];
   try { files = await readdir(directory, { recursive: true }); } catch { continue; }

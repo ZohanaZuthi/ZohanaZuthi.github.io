@@ -89,6 +89,14 @@ content:
           - { name: description, label: Description, type: text }
           - { name: url, label: Related URL, type: string, description: "Optional. Add an institution, degree or reference website." }
           - { name: urlTitle, label: Link title, type: string, description: "Optional. The clickable title. Uses the institution name when empty; the URL itself is not displayed." }
+          - name: links
+            label: Additional URLs
+            type: object
+            list: true
+            description: Optional. Add extra education links with your own clickable labels.
+            fields:
+              - { name: url, label: URL, type: string, required: true }
+              - { name: label, label: Label text, type: string, required: true }
       - name: skills
         label: Skills
         type: object
@@ -113,9 +121,28 @@ content:
         type: image
         description: Optional. Upload a cover, or leave empty to preview the live project URL.
         options: { media: images }
+      - { name: featureCover, label: Show cover in gallery, type: boolean, description: "Select an uploaded cover for the full Gallery." }
+      - { name: homepageCover, label: Feature cover on homepage, type: boolean, description: "Select for the three-photo homepage row. Also includes this image in Gallery. Display order controls priority if more than three are selected." }
+      - name: gallery
+        label: Project photos
+        type: object
+        list: true
+        description: Optional. All photos appear on the project detail page; only checked photos appear in Gallery.
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+            options: { media: images }
+          - { name: caption, label: Caption, type: string }
+          - { name: title, label: Photo title, type: string }
+          - { name: featured, label: Show in gallery, type: boolean }
+          - { name: homepage, label: Feature on homepage, type: boolean, description: "Select for the three-photo homepage row. Also includes this photo in Gallery." }
+          - { name: order, label: Photo display order, type: number, description: "Optional. Lower numbers appear first in Gallery and the homepage row; uses the entry display order when empty." }
       - { name: link, label: Live project URL, type: string }
       - { name: source, label: Source code URL, type: string }
       - { name: featured, label: Show on homepage, type: boolean }
+      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Full story, type: rich-text }
 
@@ -139,6 +166,7 @@ content:
         label: Paper PDF
         type: file
         options: { media: documents, extensions: [pdf] }
+      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Abstract or details, type: rich-text }
 
@@ -157,11 +185,14 @@ content:
         label: Certificate image
         type: image
         options: { media: images }
+      - { name: featureCover, label: Show certificate in gallery, type: boolean }
+      - { name: homepageCover, label: Feature cover on homepage, type: boolean, description: "Select for the three-photo homepage row. Also includes this image in Gallery. Display order controls priority if more than three are selected." }
       - { name: link, label: Credential URL, type: string }
       - name: pdf
         label: Certificate PDF
         type: file
         options: { media: documents, extensions: [pdf] }
+      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Details, type: rich-text }
 
@@ -180,7 +211,8 @@ content:
         label: Image
         type: image
         options: { media: images }
-      - { name: featureCover, label: Show cover in homepage gallery, type: boolean }
+      - { name: featureCover, label: Show cover in gallery, type: boolean, description: "Includes this photo in the full Gallery. Leave off to keep it only in its original entry." }
+      - { name: homepageCover, label: Feature cover on homepage, type: boolean, description: "Select for the three-photo homepage row. Also includes this image in Gallery. Display order controls priority if more than three are selected." }
       - name: gallery
         label: Gallery photos
         type: object
@@ -194,8 +226,11 @@ content:
             options: { media: images }
           - { name: caption, label: Caption, type: string }
           - { name: title, label: Photo title, type: string, description: "Optional. Uses the award title when empty." }
-          - { name: featured, label: Show in homepage gallery, type: boolean }
+          - { name: featured, label: Show in gallery, type: boolean, description: "Select this photo for the full Gallery. Homepage selection below is separate." }
+          - { name: homepage, label: Feature on homepage, type: boolean, description: "Select for the three-photo homepage row. Also includes this photo in Gallery." }
+          - { name: order, label: Photo display order, type: number, description: "Optional. Lower numbers appear first in Gallery and the homepage row; uses the entry display order when empty." }
       - { name: link, label: More information URL, type: string }
+      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Details, type: rich-text }
 
@@ -216,5 +251,6 @@ content:
         options: { media: images }
       - { name: location, label: Location or event, type: string }
       - { name: link, label: Related URL, type: string }
-      - { name: featured, label: Show in homepage gallery, type: boolean }
+      - { name: featured, label: Feature on homepage, type: boolean, description: "Published gallery entries appear in Gallery. This option additionally selects the homepage preview." }
+      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }

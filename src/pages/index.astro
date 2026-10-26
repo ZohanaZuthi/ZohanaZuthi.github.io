@@ -16,7 +16,7 @@ const research = await published('research');
 const achievements = await published('achievements');
 const featured = projects.filter(entry => entry.data.featured);
 const selected = (featured.length ? featured : projects).slice(0, 3);
-const gallery = (await galleryItems()).filter(item => item.featured).slice(0, 6);
+const gallery = (await galleryItems()).filter(item => item.featured).slice(0, 3);
 ---
 
 <Base home>
