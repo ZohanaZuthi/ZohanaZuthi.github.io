@@ -74,6 +74,10 @@ const gallery = defineCollection({
     image: z.string().min(1),
     featured: z.boolean().default(false),
     location: z.string().optional(),
+    linkedImage: z.string().optional(),
+    linkedData: z.string().optional(),
+    relatedHref: z.string().optional(),
+    relatedLabel: z.string().optional(),
     link: z.string().optional(),
   }),
 });

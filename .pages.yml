@@ -241,9 +241,13 @@ content:
     path: src/lists/gallery.json
     format: json
     fields:
+      - { name: linkedImage, type: string, hidden: true }
+      - { name: linkedData, type: string, hidden: true }
+      - { name: relatedHref, type: string, hidden: true }
+      - { name: relatedLabel, type: string, hidden: true }
       - { name: id, label: Page address, type: string, description: "Optional for new entries: uses the title when empty. Keep existing addresses unchanged to retain shared links." }
       - { name: title, label: Title, type: string, required: true }
-      - { name: summary, label: Caption or short description, type: text, required: true }
+      - { name: summary, label: Caption or short description, type: text, required: true, description: "Photos selected in Recognition or Projects appear here after deployment. You can edit captions and drag records here. To remove a linked record, uncheck its Gallery/homepage options in the original entry." }
       - { name: date, label: Date, type: date, required: true }
       - name: image
         label: Photo

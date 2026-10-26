@@ -10,10 +10,11 @@
     "check": "astro check",
     "screenshots": "node scripts/project-previews.mjs",
     "thumbnails": "node scripts/gallery-thumbnails.mjs",
-    "predev": "npm run migrate && npm run thumbnails",
-    "prebuild": "npm run migrate && npm run thumbnails",
+    "predev": "npm run migrate && npm run gallery:sync && npm run thumbnails",
+    "prebuild": "npm run migrate && npm run gallery:sync && npm run thumbnails",
     "migrate": "node scripts/migrate-content.mjs",
-    "precheck": "npm run migrate"
+    "precheck": "npm run migrate && npm run gallery:sync",
+    "gallery:sync": "node scripts/sync-gallery.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
