@@ -20,7 +20,7 @@ export function compareDisplayOrder(a: { order?: number | null; date: Date }, b:
 }
 
 export function entryPosition(name: CollectionName, entry: { id: string; filePath?: string }) {
-  const saved: string[] = entryOrder[name] || [];
+  const saved = (entryOrder as Partial<Record<CollectionName, string[]>>)[name] || [];
   const file = entry.filePath?.replaceAll('\\', '/');
   const index = saved.findIndex(path => path === file || path === `src/content/${name}/${entry.id}.md`);
   return index < 0 ? Infinity : index;
