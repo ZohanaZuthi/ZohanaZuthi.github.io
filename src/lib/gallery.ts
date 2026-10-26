@@ -1,4 +1,4 @@
-import { published, compareDisplayOrder } from './content';
+import { published, compareDisplayOrder, entryPosition } from './content';
 import { socialLink } from './social-link';
 
 export interface GalleryItem {
@@ -11,6 +11,7 @@ export interface GalleryItem {
   relatedLabel?: string;
   featured: boolean;
   order?: number | null;
+  position?: number;
 }
 
 // Only explicitly selected photos are reused from awards, projects and certificates.
@@ -18,8 +19,8 @@ export async function galleryItems(): Promise<GalleryItem[]> {
   const [awards, projects, certificates, entries] = await Promise.all([
     published('achievements'), published('projects'), published('certificates'), published('gallery'),
   ]);
-  const items: GalleryItem[] = entries.map(({ data }) => ({
-    ...data, relatedHref: socialLink(data.link)?.href, relatedLabel: 'More information',
+  const items: GalleryItem[] = entries.map(entry => ({
+    ...entry.data, position: entryPosition('gallery', entry), relatedHref: socialLink(entry.data.link)?.href, relatedLabel: 'More information',
   }));
   for (const entry of [...awards, ...projects]) {
     const { id, data } = entry;
@@ -46,7 +47,7 @@ export async function galleryItems(): Promise<GalleryItem[]> {
       relatedLabel: 'Related certificate', featured: data.homepageCover, order: data.order });
   }
   const unique = new Map<string, GalleryItem>();
-  for (const item of items.sort(compareDisplayOrder)) {
+  for (const item of items.sort((a, b) => (a.position ?? Infinity) - (b.position ?? Infinity) || compareDisplayOrder(a, b))) {
     const existing = unique.get(item.image);
     if (existing) existing.featured ||= item.featured;
     else unique.set(item.image, item);

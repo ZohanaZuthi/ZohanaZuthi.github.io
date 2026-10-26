@@ -1,0 +1,19 @@
+{
+  "projects": [
+    "src/content/projects/ain-bondhu.md"
+  ],
+  "research": [
+    "src/content/research/fiuhiheoigoiheiughiuehgiurh.md",
+    "src/content/research/lkngknkengkjejgb.md"
+  ],
+  "certificates": [
+    "src/content/certificates/njnfkjenggggggggggggggrg.md",
+    "src/content/certificates/example-certificate.md",
+    "src/content/certificates/example-training.md"
+  ],
+  "achievements": [
+    "src/content/achievements/example-award.md",
+    "src/content/achievements/example-fellowship.md"
+  ],
+  "gallery": []
+}

@@ -13,6 +13,63 @@ media:
     rename: safe
 
 content:
+  - name: entryOrder
+    label: Arrange entries
+    type: file
+    path: src/settings/entry-order.json
+    format: json
+    fields:
+      - name: projects
+        label: Projects
+        type: reference
+        list: true
+        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
+        options:
+          collection: projects
+          value: "{path}"
+          label: "{title}"
+          search: "title"
+      - name: research
+        label: Research & publications
+        type: reference
+        list: true
+        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
+        options:
+          collection: research
+          value: "{path}"
+          label: "{title}"
+          search: "title"
+      - name: certificates
+        label: Certificates
+        type: reference
+        list: true
+        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
+        options:
+          collection: certificates
+          value: "{path}"
+          label: "{title}"
+          search: "title"
+      - name: achievements
+        label: Achievements & awards
+        type: reference
+        list: true
+        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
+        options:
+          collection: achievements
+          value: "{path}"
+          label: "{title}"
+          search: "title"
+      - name: gallery
+        label: Gallery entries
+        type: reference
+        list: true
+        description: "Add existing entries by title, then drag the grip on the left to arrange them. Save to update the website. Entries not listed are added after these."
+        options:
+          collection: gallery
+          value: "{path}"
+          label: "{title}"
+          search: "title"
+
   - name: profile
     label: Profile
     type: file
@@ -142,7 +199,6 @@ content:
       - { name: link, label: Live project URL, type: string }
       - { name: source, label: Source code URL, type: string }
       - { name: featured, label: Show on homepage, type: boolean }
-      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Full story, type: rich-text }
 
@@ -166,7 +222,6 @@ content:
         label: Paper PDF
         type: file
         options: { media: documents, extensions: [pdf] }
-      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Abstract or details, type: rich-text }
 
@@ -192,7 +247,6 @@ content:
         label: Certificate PDF
         type: file
         options: { media: documents, extensions: [pdf] }
-      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Details, type: rich-text }
 
@@ -230,7 +284,6 @@ content:
           - { name: homepage, label: Feature on homepage, type: boolean, description: "Select for the three-photo homepage row. Also includes this photo in Gallery." }
           - { name: order, label: Photo display order, type: number, description: "Optional. Lower numbers appear first in Gallery and the homepage row; uses the entry display order when empty." }
       - { name: link, label: More information URL, type: string }
-      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }
       - { name: body, label: Details, type: rich-text }
 
@@ -252,5 +305,4 @@ content:
       - { name: location, label: Location or event, type: string }
       - { name: link, label: Related URL, type: string }
       - { name: featured, label: Feature on homepage, type: boolean, description: "Published gallery entries appear in Gallery. This option additionally selects the homepage preview." }
-      - { name: order, label: Display order, type: number, description: "Optional. Use 1 for first, 2 for second, and so on. Leave empty to use the date. Lower numbers appear first; dates break ties." }
       - { name: published, label: Published, type: boolean }

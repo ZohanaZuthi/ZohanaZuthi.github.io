@@ -105,6 +105,12 @@ Gallery is available in the header on every page. Captions use consistent image 
 
 ## Manual ordering and the three-photo homepage gallery
 
-Every project, research entry, certificate, award and standalone gallery entry has an optional **Display order**. Set 1, 2, 3, etc. Numbered entries appear before unnumbered ones; dates break ties and sort entries without an order. Certificates still come before awards on Recognition.
+Use **Arrange entries** to drag projects, research entries, certificates, awards and standalone Gallery entries into order. Previously saved numeric order values remain a fallback for unlisted entries. Certificates still come before awards on Recognition.
 
 **Show in gallery** selects a photo for the full Gallery only. Use **Feature on homepage** on an award/project photo, **Feature cover on homepage** on a cover/certificate, or **Feature on homepage** on a standalone Gallery entry to select the homepage row. Select your preferred three; if more are selected, the three with the lowest display order appear. Photo display order overrides its entry order. The homepage shows at most three photos, with responsive stacking on small screens. No photos are selected automatically.
+
+## Drag entries into order
+
+Open **Pages CMS → Arrange entries**. Each collection has a list of references to existing entries, displayed by title. Drag the grip on the left to change their order, then **Save**. Add new entries to the list by selecting their title. Removing a reference only removes its ordering preference; it does not delete or hide the entry. Published entries not listed appear afterward, using the previous order/date fallback. Existing entries and uploads are unchanged. Certificates and awards keep their separate sections.
+
+Education, experience and photo lists also follow their saved list order and can be dragged within their editor.
