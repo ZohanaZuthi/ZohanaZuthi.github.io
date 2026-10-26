@@ -150,3 +150,22 @@ Google Analytics visitor collection and this owner's report connection are separ
 Reference: [Google browser authorization](https://developers.google.com/identity/oauth2/web/guides/use-token-model), [Data API reporting](https://developers.google.com/analytics/devguides/reporting/data/v1/basics).
 
 Validate the dashboard's report and connection behavior with `node --test tests/analytics.test.mjs`, then `npm run check` and `npm run build`. A live owner sign-in still requires the real Google configuration above.
+
+### Search visibility and sharing
+
+Every public page has a descriptive title and description, canonical URL, Open Graph/X sharing metadata and entry-specific preview images. The homepage includes Person structured data based on the visible profile. `/sitemap.xml` is generated from published projects, research, certificates and achievements plus public section pages. `/robots.txt` points to it. The owner Analytics page and 404 page remain noindex and are omitted from the sitemap. Do not block `/analytics/` in robots.txt: Google must be able to read its noindex directive.
+
+A `USERNAME.github.io` repository detects its own production URL during GitHub Actions builds. For a custom domain, fill **Site settings → Website URL** with its full HTTPS URL. Do not copy the template author's URL into a client's settings. For a local production preview, use `PUBLIC_SITE_URL=https://yourname.github.io npm run build`. An unconfigured local/template build deliberately omits production canonical URLs instead of advertising localhost or another owner's domain. The existing template assumes hosting at the domain root; this update does not add project-subdirectory hosting.
+
+In Pages CMS → Site settings, write a meaningful **Search description**, e.g. `Alex Morgan is a software developer building accessible web applications. Explore projects, experience and selected writing.` Use your real specialization, not a list of search keywords. Add an optional **Default sharing image** (1200 × 630 is a useful format); detail pages use their own image when available. Your portrait is the fallback.
+
+To request Google discovery after publishing:
+
+1. Open [Google Search Console](https://search.google.com/search-console/) with your own account and add a **URL prefix** property for your exact website URL.
+2. Select **HTML tag** verification. Paste only the tag's `content` value into Pages CMS → Site settings → **Google Search Console verification code**. Save, wait for deployment, then click Verify in Search Console.
+3. In Search Console → **Sitemaps**, submit `sitemap.xml`. Use URL inspection for the homepage and important entries. Analytics tracks visits; Search Console reports Google search visibility. They are separate tools.
+4. Replace example/test entries, use clear project/research titles, describe your contribution and results accurately, write useful image captions, and link your portfolio from your genuine professional profiles. Keep descriptions readable and specific. Google controls crawling, indexing and rankings; sitemap submission, structured data and performance changes do not guarantee placement.
+
+For general appeal, keep your name, specialization, strongest work and contact/CV easy to find. Keep the existing light default and optional dark mode, use consistent photos and captions, and avoid filling the homepage with every record. Decorative Three.js math now loads dynamically rather than as an eager dependency, is skipped for reduced motion, and pauses when the page is hidden. No Lighthouse score or ranking improvement is claimed without a measured audit.
+
+Checks: `node --test tests/seo.test.mjs`; after building for a real origin, `EXPECTED_SITE_URL=https://yourname.github.io node --test tests/seo.test.mjs` verifies the generated metadata, sitemap, private-page exclusions and structured data. Also run `npm run check` and `npm run build`.

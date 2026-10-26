@@ -1,11 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
+import profile from '../../lib/profile';
 import EntryCard from '../../components/EntryCard.astro';
 import { published } from '../../lib/content';
 const entries = await published('research');
 ---
 
-<Base title="Research" description="Research, publications, and ideas.">
+<Base title="Research" description={`Research and publications by ${profile.name}${profile.role ? `, ${profile.role}` : ''}.`}>
   <section class="page-intro"><p class="eyebrow">Research &amp; publications / {entries.length} entries</p><h1>Research<span class="accent-dot">.</span></h1><p>Publications, working papers, and studies from questions worth exploring.</p></section>
   {entries.length ? <div class="card-grid listing-grid">{entries.map(entry => <EntryCard entry={entry} />)}</div> : <p class="empty-message">Research will appear here when published.</p>}
 </Base>

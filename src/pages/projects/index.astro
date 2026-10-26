@@ -1,11 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
+import profile from '../../lib/profile';
 import ProjectListItem from '../../components/ProjectListItem.astro';
 import { published } from '../../lib/content';
 const entries = await published('projects');
 ---
 
-<Base title="Projects" description="Selected projects and case studies.">
+<Base title="Projects" description={`Projects and case studies by ${profile.name}${profile.role ? `, ${profile.role}` : ''}.`}>
   <section class="page-intro"><p class="eyebrow">Selected work / {entries.length} entries</p><h1>Projects<span class="accent-dot">.</span></h1><p>A closer look at the ideas, process, and outcomes behind the work.</p></section>
   {entries.length ? <div class="project-list">{entries.map(entry => <ProjectListItem entry={entry} />)}</div> : <p class="empty-message">Projects will appear here when published.</p>}
 </Base>

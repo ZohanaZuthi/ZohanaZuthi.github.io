@@ -10,65 +10,73 @@ import ProfilePortrait from './ProfilePortrait.astro';
 </div>
 
 <script>
-  import { PerspectiveCamera, Vector3 } from 'three';
-
   const host = document.querySelector<HTMLElement>('[data-profile-orbit]');
   const canvas = host?.querySelector<HTMLCanvasElement>('canvas');
   const context = canvas?.getContext('2d');
 
-  if (host && canvas && context && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const camera = new PerspectiveCamera(45, 1, 0.1, 20);
-    camera.position.z = 8;
-    camera.updateMatrixWorld();
-    const point = new Vector3();
-    const dots = Array.from({ length: 65 }, (_, i) => ({
-      angle: i * 2.39996,
-      radius: 2.35 + (i % 7) * 0.12,
-      depth: Math.sin(i * 1.7) * 0.7,
-    }));
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (host && canvas && context && !motion.matches) {
+    // Keep decorative 3D math out of the initial module and skip it for reduced motion.
+    void (async () => {
+      const { PerspectiveCamera, Vector3 } = await import('three');
+      const camera = new PerspectiveCamera(45, 1, 0.1, 20);
+      camera.position.z = 8;
+      camera.updateMatrixWorld();
+      const point = new Vector3();
+      const dots = Array.from({ length: 65 }, (_, i) => ({
+        angle: i * 2.39996,
+        radius: 2.35 + (i % 7) * 0.12,
+        depth: Math.sin(i * 1.7) * 0.7,
+      }));
 
-    let size = 0;
-    const resize = () => {
-      size = host.clientWidth;
-      const ratio = Math.min(window.devicePixelRatio, 2);
-      canvas.width = size * ratio;
-      canvas.height = size * ratio;
-      context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    };
-    resize();
-    const resizeObserver = new ResizeObserver(resize);
-    resizeObserver.observe(host);
+      let size = 0;
+      const resize = () => {
+        size = host.clientWidth;
+        const ratio = Math.min(window.devicePixelRatio, 2);
+        canvas.width = size * ratio;
+        canvas.height = size * ratio;
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      };
+      resize();
+      const resizeObserver = new ResizeObserver(resize);
+      resizeObserver.observe(host);
 
-    let visible = false;
-    let frame = 0;
-    let angle = 0;
-    const draw = () => {
-      if (!visible) return;
-      context.clearRect(0, 0, size, size);
-      angle += 0.002;
-      dots.forEach((dot, i) => {
-        const a = dot.angle + angle;
-        point.set(Math.cos(a) * dot.radius, Math.sin(a) * dot.radius * 0.86, dot.depth).project(camera);
-        context.beginPath();
-        context.arc((point.x + 1) * size / 2, (1 - point.y) * size / 2, i % 9 === 0 ? 1.8 : 1, 0, Math.PI * 2);
-        context.fillStyle = i % 5 === 0 ? '#8adbd1' : '#e5b77b';
-        context.globalAlpha = 0.45 + (dot.depth + 0.7) * 0.25;
-        context.fill();
+      let visible = false;
+      let frame = 0;
+      let angle = 0;
+      const draw = () => {
+        if (!visible || document.hidden || motion.matches) return;
+        context.clearRect(0, 0, size, size);
+        angle += 0.002;
+        dots.forEach((dot, i) => {
+          const a = dot.angle + angle;
+          point.set(Math.cos(a) * dot.radius, Math.sin(a) * dot.radius * 0.86, dot.depth).project(camera);
+          context.beginPath();
+          context.arc((point.x + 1) * size / 2, (1 - point.y) * size / 2, i % 9 === 0 ? 1.8 : 1, 0, Math.PI * 2);
+          context.fillStyle = i % 5 === 0 ? '#8adbd1' : '#e5b77b';
+          context.globalAlpha = 0.45 + (dot.depth + 0.7) * 0.25;
+          context.fill();
+        });
+        context.globalAlpha = 1;
+        frame = requestAnimationFrame(draw);
+      };
+      const resume = () => { cancelAnimationFrame(frame); if (visible && !document.hidden && !motion.matches) draw(); };
+      document.addEventListener('visibilitychange', resume);
+      motion.addEventListener('change', resume);
+      const intersectionObserver = new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        cancelAnimationFrame(frame);
+        resume();
       });
-      context.globalAlpha = 1;
-      frame = requestAnimationFrame(draw);
-    };
-    const intersectionObserver = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      cancelAnimationFrame(frame);
-      if (visible) draw();
-    });
-    intersectionObserver.observe(host);
+      intersectionObserver.observe(host);
 
-    window.addEventListener('pagehide', () => {
-      cancelAnimationFrame(frame);
-      resizeObserver.disconnect();
-      intersectionObserver.disconnect();
-    }, { once: true });
+      window.addEventListener('pagehide', () => {
+        cancelAnimationFrame(frame);
+        document.removeEventListener('visibilitychange', resume);
+        motion.removeEventListener('change', resume);
+        resizeObserver.disconnect();
+        intersectionObserver.disconnect();
+      }, { once: true });
+    })().catch(() => { /* The portrait remains usable if decoration cannot load. */ });
   }
 </script>

@@ -1,0 +1,33 @@
+---
+import profile from '../lib/profile';
+import site from '../data/site.json';
+import { absoluteUrl, plainDescription } from '../lib/site-url.mjs';
+import { socialLink } from '../lib/social-link';
+interface Props { title: string; description: string; image?: string; privatePage?: boolean; }
+const { title, description, image, privatePage = false } = Astro.props;
+const settings = site as typeof site & { socialImage?: string; googleSiteVerification?: string };
+const siteUrl = Astro.site?.href || '';
+const canonical = absoluteUrl(Astro.url.pathname, siteUrl);
+const sharingImage = absoluteUrl(image || settings.socialImage || profile.portrait, siteUrl);
+const summary = plainDescription(description) || `${profile.name}${profile.role ? ` — ${profile.role}` : ''}. Projects, experience and professional background.`;
+const identityLinks = [profile.linkedin, profile.github, profile.scholar, profile.orcid, profile.researchgate, profile.arxiv, profile.pubmed, profile.ieee, ...(Array.isArray(profile.links) ? profile.links.map(link => link.url) : [])]
+  .map(value => socialLink(value)?.href).filter((value): value is string => Boolean(value));
+const portrait = absoluteUrl(profile.portrait, siteUrl);
+const person = { '@context': 'https://schema.org', '@type': 'Person', name: profile.name, ...(profile.role && { jobTitle: profile.role }), ...(siteUrl && { url: siteUrl }), ...(portrait && { image: portrait }), ...(identityLinks.length && { sameAs: [...new Set(identityLinks)] }) };
+---
+<meta name="description" content={summary} />
+{canonical && !privatePage && <link rel="canonical" href={canonical} />}
+{settings.googleSiteVerification?.trim() && <meta name="google-site-verification" content={settings.googleSiteVerification.trim()} />}
+{!privatePage && <>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={summary} />
+  <meta property="og:site_name" content={profile.name} />
+  {canonical && <meta property="og:url" content={canonical} />}
+  {sharingImage && <><meta property="og:image" content={sharingImage} /><meta property="og:image:alt" content={title} /></>}
+  <meta name="twitter:card" content={sharingImage ? 'summary_large_image' : 'summary'} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={summary} />
+  {sharingImage && <meta name="twitter:image" content={sharingImage} />}
+  {Astro.url.pathname === '/' && <script type="application/ld+json" is:inline set:html={JSON.stringify(person).replace(/</g, '\\u003c')} />}
+</>}

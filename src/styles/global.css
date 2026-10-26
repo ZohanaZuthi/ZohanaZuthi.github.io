@@ -66,7 +66,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outlin
 .brand-mark { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; background: #14263d; color: white; font-size: 0.75rem; letter-spacing: -.05em; }
 .top-nav { display: flex; gap: 32px; margin: 0 auto; }
 .top-nav a { color: var(--muted); font-size: 0.875rem; font-weight: 650; transition: color .2s; }
-.top-nav a:hover, .social-links a:hover { color: var(--accent); }
+.top-nav a[aria-current="page"], .top-nav a:hover, .social-links a:hover { color: var(--accent); }
 .page-grid { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 40px; }
 .sidebar { align-self: start; position: sticky; top: calc(var(--navbar-height) + 24px); max-height: calc(100dvh - var(--navbar-height) - 48px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; scroll-behavior: smooth; padding: 24px 8px 24px 0; }
 .portrait { width: 144px; height: 144px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: linear-gradient(145deg, #193d51, #0f766e); color: white; box-shadow: 0 15px 35px #14263d18; margin-bottom: 31px; }

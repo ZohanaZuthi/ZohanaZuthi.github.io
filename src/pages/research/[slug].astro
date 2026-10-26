@@ -13,6 +13,6 @@ const { Content } = await render(entry);
 const image = entry.data.image || defaultResearchImage;
 ---
 
-<Base title={entry.data.title} description={entry.data.summary}>
-  <article class="detail-page research-detail"><a class="back-link" href="/research/">← All research</a><p class="eyebrow">{entry.data.venue || 'Research'} / {dateLabel(entry.data.date)}</p><h1>{entry.data.title}</h1><p class="detail-summary">{entry.data.summary}</p><img class="detail-image" src={image} alt="" /><div class="prose"><Content /></div><div class="detail-links">{entry.data.link && <a class="button button-primary" href={entry.data.link} target="_blank" rel="noopener noreferrer">Read publication ↗</a>}{entry.data.pdf && <a class="button button-outline" href={entry.data.pdf} target="_blank" rel="noopener noreferrer">Download PDF ↗</a>}</div></article>
+<Base image={image} title={entry.data.title} description={entry.data.summary}>
+  <article class="detail-page research-detail"><a class="back-link" href="/research/">← All research</a><p class="eyebrow">{entry.data.venue || 'Research'} / {dateLabel(entry.data.date)}</p><h1>{entry.data.title}</h1><p class="detail-summary">{entry.data.summary}</p><img class="detail-image" src={image} alt={entry.data.title} /><div class="prose"><Content /></div><div class="detail-links">{entry.data.link && <a class="button button-primary" href={entry.data.link} target="_blank" rel="noopener noreferrer">Read publication ↗</a>}{entry.data.pdf && <a class="button button-outline" href={entry.data.pdf} target="_blank" rel="noopener noreferrer">Download PDF ↗</a>}</div></article>
 </Base>

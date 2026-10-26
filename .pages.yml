@@ -61,6 +61,9 @@ content:
     fields:
       - { name: tagline, label: Homepage tagline, type: string, required: true }
       - { name: description, label: Search description, type: text, required: true }
+      - { name: siteUrl, label: Website URL, type: string, description: "Optional for USERNAME.github.io repositories (detected automatically during deployment). Enter your full https:// URL when using a custom domain. Used for Google canonical URLs, sitemap and sharing." }
+      - { name: socialImage, label: Default sharing image, type: image, description: "Optional. A wide image for previews when your portfolio link is shared. A 1200 × 630 image works well. Your portrait is used when empty." }
+      - { name: googleSiteVerification, label: Google Search Console verification code, type: string, description: "Optional. Paste only the content value from Google's HTML verification meta tag, not the full tag." }
       - { name: analyticsMeasurementId, label: Google Analytics measurement ID, type: string, description: "Optional. G-XXXXXXXXXX enables visitor tracking. Leave blank to disable it." }
       - { name: analyticsPropertyId, label: Google Analytics property ID, type: string, description: "Optional. Numeric property ID for your private /analytics/ dashboard. This is different from the G- measurement ID." }
       - { name: analyticsClientId, label: Google OAuth client ID, type: string, description: "Optional. Web application client ID ending in .apps.googleusercontent.com. Never enter a client secret. See README for one-time setup." }

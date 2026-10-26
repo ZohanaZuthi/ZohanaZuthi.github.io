@@ -1,6 +1,7 @@
 ---
 import profile from '../lib/profile';
 import AnalyticsTag from '../components/AnalyticsTag.astro';
+import Seo from '../components/Seo.astro';
 import site from '../data/site.json';
 import ProfilePortrait from '../components/ProfilePortrait.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
@@ -15,10 +16,11 @@ interface Props {
   description?: string;
   home?: boolean;
   privatePage?: boolean;
+  image?: string;
 }
 
-const { title, description = site.description, home = false, privatePage = false } = Astro.props;
-const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} · ${profile.role}`;
+const { title, description = title ? `${title} — ${profile.name}. ${profile.intro || profile.role}` : site.description, home = false, privatePage = false, image } = Astro.props;
+const pageTitle = title ? `${title} · ${profile.name}` : [profile.name, profile.role].filter(Boolean).join(' · ');
 const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).slice(0, 2).join('').toUpperCase();
 ---
 
@@ -27,7 +29,7 @@ const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).sl
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
+    <Seo title={pageTitle} description={description} image={image} privatePage={privatePage} />
     <meta name="theme-color" content="#f8fafc" />
     <script is:inline>
       let theme = 'light';
@@ -51,12 +53,12 @@ const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).sl
           <span>{profile.name}</span>
         </a>
         <nav class="top-nav" aria-label="Main navigation">
-          <a href="/">Home</a>
-          <a href="/about/">About</a>
-          <a href="/projects/">Projects</a>
-          <a href="/research/">Research</a>
-          <a href="/recognition/">Recognition</a>
-          <a href="/gallery/">Gallery</a>
+          <a href="/" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Home</a>
+          <a href="/about/" aria-current={Astro.url.pathname.startsWith('/about/') ? 'page' : undefined}>About</a>
+          <a href="/projects/" aria-current={Astro.url.pathname.startsWith('/projects/') ? 'page' : undefined}>Projects</a>
+          <a href="/research/" aria-current={Astro.url.pathname.startsWith('/research/') ? 'page' : undefined}>Research</a>
+          <a href="/recognition/" aria-current={Astro.url.pathname.startsWith('/recognition/') ? 'page' : undefined}>Recognition</a>
+          <a href="/gallery/" aria-current={Astro.url.pathname.startsWith('/gallery/') ? 'page' : undefined}>Gallery</a>
           {profile.cv && <a href={profile.cv} target="_blank" rel="noopener noreferrer">CV</a>}
         </nav>
         <ThemeToggle />

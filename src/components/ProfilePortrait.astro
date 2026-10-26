@@ -8,7 +8,7 @@ const initials = profile.name.split(' ').filter(Boolean).map(part => part[0]).sl
 
 <div class={hero ? 'profile-orbit-photo' : 'portrait'}>
   {profile.portrait ? (
-    <img src={profile.portrait} alt={`${profile.name} portrait`} width="480" height="480" decoding="async" />
+    <img src={profile.portrait} alt={`${profile.name} portrait`} width="480" height="480" decoding="async" fetchpriority={hero ? 'high' : 'auto'} />
   ) : (
     <span aria-label={`${profile.name} portrait placeholder`}>{initials}</span>
   )}
