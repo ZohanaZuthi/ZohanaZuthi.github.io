@@ -23,6 +23,7 @@ const projects = defineCollection({
   loader: portfolioList('projects'),
   schema: z.object({
     ...common,
+    summary: z.string().default(''),
     featured: z.boolean().default(false),
     category: z.string().optional(),
     featureCover: z.boolean().default(false),

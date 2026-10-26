@@ -114,7 +114,7 @@ content:
     fields:
       - { name: id, label: Page address, type: string, description: "Optional for new entries: uses the title when empty. Keep existing addresses unchanged to retain shared links." }
       - { name: title, label: Title, type: string, required: true }
-      - { name: summary, label: Short summary, type: text, required: true }
+      - { name: summary, label: Short summary, type: text, description: "Optional. Leave empty to show just the project title, photos and links." }
       - { name: date, label: Date, type: date, required: true }
       - { name: category, label: Category, type: string }
       - name: image
@@ -128,7 +128,7 @@ content:
         label: Project photos
         type: object
         list: true
-        description: Optional. All photos appear on the project detail page; only checked photos appear in Gallery.
+        description: "Optional. Add multiple images with captions. All photos appear directly on Projects in rows of three and on the detail page. The Gallery checkbox controls the separate Gallery section."
         fields:
           - name: image
             label: Photo
@@ -144,7 +144,7 @@ content:
       - { name: source, label: Source code URL, type: string }
       - { name: featured, label: Show on homepage, type: boolean }
       - { name: published, label: Published, type: boolean }
-      - { name: body, label: Full story, type: rich-text }
+      - { name: body, label: Full story, type: rich-text, description: "Optional. Add details only if needed." }
     list: true
 
   - name: research

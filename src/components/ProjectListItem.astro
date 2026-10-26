@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import AchievementGallery from './AchievementGallery.astro';
+import { dateLabel } from '../lib/content';
+import { projectImage } from '../lib/project-image.js';
+interface Props { entry: CollectionEntry<'projects'>; }
+const { entry } = Astro.props;
+const { data } = entry;
+const href = `/projects/${entry.id}/`;
+const cover = data.image || (data.gallery.length ? undefined : projectImage(data));
+---
+
+<article class="project-list-item">
+  <p class="entry-meta">{data.category || 'Project'} · {dateLabel(data.date)}</p>
+  <h2><a href={href}>{data.title}</a></h2>
+  {data.summary?.trim() && <p class="project-summary">{data.summary}</p>}
+  <AchievementGallery photos={data.gallery} cover={cover} title={data.title} inline />
+  <div class="project-list-actions">
+    <a class="text-link" href={href}>Explore project <span aria-hidden="true">↗</span></a>
+    {data.link?.trim() && <a class="button button-outline" href={data.link} target="_blank" rel="noopener noreferrer">Visit project ↗</a>}
+    {data.source?.trim() && <a class="button button-outline" href={data.source} target="_blank" rel="noopener noreferrer">View source ↗</a>}
+  </div>
+</article>

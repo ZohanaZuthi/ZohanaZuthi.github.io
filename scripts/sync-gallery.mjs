@@ -22,7 +22,7 @@ export function syncGallery(current, sources) {
       for (const photo of photos) {
         if (!photo.image || (!photo.featured && !photo.homepage)) continue;
         const item = {
-          title: photo.title || entry.title, summary: photo.caption || entry.summary,
+          title: photo.title || entry.title, summary: photo.caption || entry.summary || entry.title,
           date: entry.date, image: photo.image,
           location: (certificate ? entry.issuer : award ? entry.organization : '') || '',
           featured: Boolean(photo.homepage), published: true,

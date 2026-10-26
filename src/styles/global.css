@@ -356,3 +356,12 @@ h1, h2 { font-family: inherit; letter-spacing: -.035em; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: .01ms !important; }
 }
+
+/* Full-width project entries leave room for the same three-photo rows as awards. */
+.project-list { display: grid; gap: 36px; padding-bottom: 80px; }
+.project-list-item { min-width: 0; padding-bottom: 36px; border-bottom: 1px solid var(--border); }
+.project-list-item h2 { font-size: 1.6rem; line-height: 1.35; margin: 12px 0; overflow-wrap: anywhere; }
+.project-list-item h2 a:hover { color: var(--accent); }
+.project-summary { color: var(--secondary); line-height: 1.75; white-space: pre-line; overflow-wrap: anywhere; margin: 0 0 20px; }
+.project-list-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
+.project-list-actions .text-link { margin: 0; }

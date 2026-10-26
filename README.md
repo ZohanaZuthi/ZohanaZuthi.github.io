@@ -122,3 +122,7 @@ Saving a selected Recognition or Project photo starts deployment. The build adds
 Linked records keep Gallery edits to captions, titles, homepage selection and visibility. Unedited values follow updates to the original entry. Unchecking both Gallery/homepage selections or unpublishing/removing the source removes its linked record; standalone Gallery records stay. To remove a linked record permanently, change its selection in the original entry. Gallery's saved list order controls the full page and the three selected homepage photos. A selected certificate needs an uploaded image.
 
 `npm run gallery:sync` performs the same synchronization locally. It runs before checks, development and builds. The deployment needs repository content write permission to save only the Gallery list; Git pushes use normal conflict protection and never force-push over CMS changes.
+
+## Project photos on the listing
+
+Pages CMS → Projects → Project photos accepts multiple images with optional captions. All photos appear directly on the Projects listing in three columns on desktop, with two/one columns on smaller screens. A cover already included in the photos appears once. When photos exist without a cover, no extra default image is inserted. Short summary and Full story are optional; empty descriptions are hidden. Gallery/homepage selections remain separate and reuse the same image uploads.
