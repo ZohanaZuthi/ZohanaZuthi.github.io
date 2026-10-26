@@ -10,11 +10,13 @@
       {
         "image": "/uploads/images/screenshot-from-2026-08-12-18-18-09.png",
         "caption": "mmklmm",
-        "featured": true
+        "featured": true,
+        "homepage": true
       },
       {
         "image": "/uploads/images/screenshot-from-2026-08-15-21-36-34.png",
-        "featured": true
+        "featured": true,
+        "homepage": true
       }
     ],
     "published": true,
