@@ -11,15 +11,6 @@
     "published": true
   },
   {
-    "id": " bhvgcguguhikjkfenkf",
-    "title": "fbjbeuhiehgiuheihgiue",
-    "summary": "gnigjeiojiojeiogjioejgioejiogjeog",
-    "date": "2026-10-27",
-    "image": "/uploads/images/nazifafairuzzuthi-1.jpg",
-    "featured": true,
-    "published": true
-  },
-  {
     "linkedImage": "/uploads/images/screenshot-from-2026-08-12-18-18-09.png",
     "linkedData": "{\"title\":\"Example: Recognition or award\",\"summary\":\"mmklmm\",\"date\":\"2025-06-01\",\"image\":\"/uploads/images/screenshot-from-2026-08-12-18-18-09.png\",\"location\":\"Awarding organization\",\"featured\":true,\"published\":true,\"relatedHref\":\"/recognition/achievements/example-award/\",\"relatedLabel\":\"Related achievement\"}",
     "relatedHref": "/recognition/achievements/example-award/",
@@ -30,6 +21,15 @@
     "date": "2025-06-01",
     "image": "/uploads/images/screenshot-from-2026-08-12-18-18-09.png",
     "location": "Awarding organization",
+    "featured": true,
+    "published": true
+  },
+  {
+    "id": " bhvgcguguhikjkfenkf",
+    "title": "fbjbeuhiehgiuheihgiue",
+    "summary": "gnigjeiojiojeiogjioejgioejiogjeog",
+    "date": "2026-10-27",
+    "image": "/uploads/images/nazifafairuzzuthi-1.jpg",
     "featured": true,
     "published": true
   },
