@@ -60,19 +60,5 @@
     "location": "Awarding organization",
     "featured": true,
     "published": true
-  },
-  {
-    "id": "shared-e3313cec462f",
-    "title": "  jnjnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnj",
-    "summary": "The \"Dying ReLU\" ProblemIn a standard ReLU network, if a neuron's weights are updated in a way that causes it to only output negative numbers, the ReLU will output exactly $0$. Because the derivative (gradient) of a horizontal line at $0$ is $0$, backpropagation stops flowing through that neuron. The neuron \"dies\" and stops learning entirely.Leaky ReLU solves this because the negative side has a slight slope (e.g., $0.01$). The gradient is never exactly zero, ensuring the network can still update the weights and recover.",
-    "date": "2026-10-27",
-    "image": "/uploads/images/47280346511133795735665248824353046725303706n.jpg",
-    "location": "",
-    "featured": true,
-    "published": true,
-    "relatedHref": "/projects/yjnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn/",
-    "relatedLabel": "Related project",
-    "linkedImage": "/uploads/images/47280346511133795735665248824353046725303706n.jpg",
-    "linkedData": "{\"title\":\"  jnjnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnj\",\"summary\":\"The \\\"Dying ReLU\\\" ProblemIn a standard ReLU network, if a neuron's weights are updated in a way that causes it to only output negative numbers, the ReLU will output exactly $0$. Because the derivative (gradient) of a horizontal line at $0$ is $0$, backpropagation stops flowing through that neuron. The neuron \\\"dies\\\" and stops learning entirely.Leaky ReLU solves this because the negative side has a slight slope (e.g., $0.01$). The gradient is never exactly zero, ensuring the network can still update the weights and recover.\",\"date\":\"2026-10-27\",\"image\":\"/uploads/images/47280346511133795735665248824353046725303706n.jpg\",\"location\":\"\",\"featured\":true,\"published\":true,\"relatedHref\":\"/projects/yjnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn/\",\"relatedLabel\":\"Related project\"}"
   }
 ]
